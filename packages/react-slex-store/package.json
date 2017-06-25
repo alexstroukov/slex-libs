@@ -1,7 +1,7 @@
 {
   "name": "react-slex-store",
   "version": "0.0.3",
-  "main": "complied/reactSlexStore.js",
+  "main": "compiled/reactSlexStore.js",
   "standard": {
     "globals": [
       "describe",
