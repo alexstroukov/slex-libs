@@ -24,7 +24,7 @@ class Router extends PureComponent {
     this.routeStream = router
       .createStream(this.routes)
       .subscribe(nextRoute => {
-        const { route: { name: routeName, validate: validateRoute = () => Promise.resolve(true) }, routeState } = nextRoute
+        const { route: { name: routeName, validate: validateRoute }, routeState } = nextRoute
         changeRoute({ validateRoute, routeName, routeState })
       })
   }

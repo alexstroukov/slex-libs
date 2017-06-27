@@ -41,13 +41,13 @@ class RouteActions {
     return action
   }
 
-  changeRoute ({ validateRoute, routeName, routeState }) {
+  changeRoute ({ validateRoute = () => true, routeName, routeState }) {
     return (dispatch, getState) => {
       const { route: { routeState: { path: currentPath } = {} } } = getState()
       const isAlreadyTheActiveRoute = pathsMatch(currentPath, routeState.path)
       if (!isAlreadyTheActiveRoute) {
         dispatch(this.routeLoading({ routeName, routeState }))
-        validateRoute({ routeName, routeState })
+        Promise.resolve(validateRoute({ routeName, routeState }))
           .then(routeAllowed => {
             const { route: { pendingRoute: { routeState: { path: pendingPath } = {} } } } = getState()
             const pathIsStillPending = pathsMatch(pendingPath, routeState.path)
