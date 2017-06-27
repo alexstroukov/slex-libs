@@ -4,7 +4,30 @@
 $ npm install slex-router
 ```
 
-`react-slex-router` is a `slex-store` connected and component driven router implementation for`react`. Its state is kept in its own store similar to `redux-router` combined with `react-router`.
+`react-slex-router` is a component driven router implementation for `react`. It is connected to `slex-store` via `react-slex-store` and its state is kept in its own store similar to `redux-router` combined with `react-router`. 
+
+
+`react-slex-router` breaks routing into 3 stages:
+
+1. Url changes set store state to loading and puts route into pending state to indicate that a route is changing.
+
+2. Route validation is preformed to determine if access is allower for the user.
+
+3. Route is taken out of pending status and route workflow is completed.
+
+## Route Action Sequence
+
+`ROUTE_LOADING` - Triggered when url changes. Puts said route in pending state alongside the current route and set the store status to loading. `{ status: 'LOADING', routeName, routeState, pendingRoute: { routeName, routeState } }`
+
+&darr;
+
+`PENDING_ROUTE_READY` - Triggered when `validate` resolves with a truthy result. Sets the pending route to `routeName` and `routeState` upon successful validation and puts store in ready state. `{ status: 'READY', routeName, routeState }`
+
+`PENDING_ROUTE_ACCESS_DENIED` - Triggered when `validate` resolves with a falsy result. Sets store in ready state upon unsuccessful validation whilst keeping the pending route. `{ status: 'READY', routeName, routeState,pendingRoute: { routeName, routeState } }`
+
+&darr;
+
+`PENDING_ROUTE_ERROR` - Triggered when `validate` resolves with an error or rejected promise. Sets store in error state whilst keeping the pending route. `{ status: 'ERROR', routeName, routeState, pendingRoute: { routeName, routeState } }`
 
 ## Example Usage
 
@@ -49,20 +72,6 @@ function validateRoute ({ routeName, routeState }) {
 }
 
 ```
-
-## Route Actions
-
-`ROUTE_LOADING` - Triggered when url changes. Puts said route in pending state alongside the current route and set the store status to loading. `{ status: 'LOADING', routeName, routeState, pendingRoute: { routeName, routeState } }`
-
-&darr;
-
-`PENDING_ROUTE_READY` - Triggered when `validate` resolves with a truthy result. Sets the pending route to `routeName` and `routeState` upon successful validation and puts store in ready state. `{ status: 'READY', routeName, routeState }`
-
-`PENDING_ROUTE_ACCESS_DENIED` - Triggered when `validate` resolves with a falsy result. Sets store in ready state upon unsuccessful validation whilst keeping the pending route. `{ status: 'READY', routeName, routeState,pendingRoute: { routeName, routeState } }`
-
-&darr;
-
-`PENDING_ROUTE_ERROR` - Triggered when `validate` resolves with an error or rejected promise. Sets store in error state whilst keeping the pending route. `{ status: 'ERROR', routeName, routeState, pendingRoute: { routeName, routeState } }`
 
 ## Route Validation
 
