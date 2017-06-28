@@ -38,7 +38,9 @@ import { Provider } from 'react-slex-store'
 import route, { Router, Route } from 'react-slex-router'
 
 const store = createStore({
-  route
+  reducers: {
+    route
+  }
 })
 
 store.subscribe(renderApp)
