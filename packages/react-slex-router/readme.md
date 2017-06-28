@@ -4,14 +4,13 @@
 $ npm install slex-router
 ```
 
-`react-slex-router` is a component driven router implementation for `react`. It is connected to `slex-store` via `react-slex-store` and its state is kept in its own store similar to `redux-router` combined with `react-router`. 
+`react-slex-router` is a component driven router implementation for `react`. It is connected to `slex-store` via `react-slex-store` and its state is kept in its own store similar to how `redux-router` combined with `react-router`.
 
-
-`react-slex-router` breaks routing into 3 stages:
+It differs from that however because `react-slex-router` breaks routing into 3 stages:
 
 1. Url changes set store state to loading and puts route into pending state to indicate that a route is changing.
 
-2. Route validation is preformed to determine if access is allower for the user.
+2. Route validation is preformed to determine if access is allowed for the user.
 
 3. Route is taken out of pending status and route workflow is completed.
 
