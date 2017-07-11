@@ -1,1 +1,2 @@
-import './reactSlexStore.test'
+import './Provider.test'
+import './connect.test'
