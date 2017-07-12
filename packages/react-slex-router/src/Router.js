@@ -5,7 +5,7 @@ import _ from 'lodash'
 import router from 'slex-router'
 import actions from './route.actions'
 
-class Router extends PureComponent {
+export class Router extends PureComponent {
   constructor (props) {
     super(props)
     this.routes = _.chain([props.children])
@@ -49,6 +49,7 @@ Router.propTypes = {
     let error = null
     React.Children.forEach(prop, function (child) {
       if (child && child.type !== Route) {
+        debugger
         error = new Error(`${componentName} children should be of type 'Route'.`)
       }
     })

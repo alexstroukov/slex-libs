@@ -6,7 +6,9 @@ class Route extends PureComponent {
     if (Component) {
       return <Component {...this.props} />
     } else {
-      return Children.only(this.props.children)
+      return this.props.children
+        ? Children.only(this.props.children)
+        : null
     }
   }
 }
@@ -16,7 +18,7 @@ Route.propTypes = {
   name: PropTypes.string.isRequired,
   validate: PropTypes.func,
   component: PropTypes.func,
-  children: PropTypes.object.isRequired
+  children: PropTypes.object
 }
 
 export default Route
