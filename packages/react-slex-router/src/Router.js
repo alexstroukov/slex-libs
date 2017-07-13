@@ -49,7 +49,6 @@ Router.propTypes = {
     let error = null
     React.Children.forEach(prop, function (child) {
       if (child && child.type !== Route) {
-        debugger
         error = new Error(`${componentName} children should be of type 'Route'.`)
       }
     })

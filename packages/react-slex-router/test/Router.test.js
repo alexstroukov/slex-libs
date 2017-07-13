@@ -23,9 +23,10 @@ describe('Router', function () {
 
   describe('when mounting', function () {
     let store
+    let dispatchSpy
     let createStreamSpy
     let changeRouteStub
-    const routePattern = '/'
+    const stubChangeRouteAction = {}
     const baseRoute = {
       path: '/',
       name: 'base',
@@ -42,13 +43,14 @@ describe('Router', function () {
           router
         }
       })
+      dispatchSpy = sandbox.spy(store, 'dispatch')
       createStreamSpy = sandbox.spy(slexRouter, 'createStream')
-      changeRouteStub = sandbox.stub()
+      changeRouteStub = sandbox.stub(routeActions, 'changeRoute').returns(stubChangeRouteAction)
       mount(
-        <Router changeRoute={changeRouteStub} routePattern={routePattern}>
+        <ConnectedRouter store={store}>
           <Route path={baseRoute.path} name={baseRoute.name} validate={baseRoute.validate} />
           <Route path={homeRoute.path} name={homeRoute.name} validate={homeRoute.validate} />
-        </Router>
+        </ConnectedRouter>
       )
     })
     it('should subscribe to slex-router with registered routes', function () {
@@ -62,6 +64,22 @@ describe('Router', function () {
       expect(createStreamSpy.firstCall.args[0][homeRoute.path].path).to.equal(homeRoute.path)
       expect(createStreamSpy.firstCall.args[0][homeRoute.path].validate).to.equal(homeRoute.validate)
     })
+    it('should dispatch changeRoute to set the initial router', function () {
+      expect(dispatchSpy.callCount).to.equal(1)
+      expect(changeRouteStub.callCount).to.equal(1)
+      expect(dispatchSpy.firstCall.args[0]).to.equal(stubChangeRouteAction)
+    })
+    // it('should dispatch changeRoute when route changes', function () {
+    //   expect(createStreamSpy.calledOnce).to.be.true
+    //   expect(createStreamSpy.firstCall.args[0][baseRoute.path]).to.exist
+    //   expect(createStreamSpy.firstCall.args[0][baseRoute.path].name).to.equal(baseRoute.name)
+    //   expect(createStreamSpy.firstCall.args[0][baseRoute.path].path).to.equal(baseRoute.path)
+    //   expect(createStreamSpy.firstCall.args[0][baseRoute.path].validate).to.equal(baseRoute.validate)
+    //   expect(createStreamSpy.firstCall.args[0][homeRoute.path]).to.exist
+    //   expect(createStreamSpy.firstCall.args[0][homeRoute.path].name).to.equal(homeRoute.name)
+    //   expect(createStreamSpy.firstCall.args[0][homeRoute.path].path).to.equal(homeRoute.path)
+    //   expect(createStreamSpy.firstCall.args[0][homeRoute.path].validate).to.equal(homeRoute.validate)
+    // })
   })
 
   describe('when the routePattern matches a rendered Route', function () {
@@ -69,9 +87,9 @@ describe('Router', function () {
     let dispatchSpy
     let changeRouteStub
     let wrapper
-    const routePattern = '/'
+    const routePattern = 'routePatternTest'
     const baseRoute = {
-      path: '/',
+      path: 'routePatternTest',
       name: 'base',
       validate: () => {}
     }
@@ -99,6 +117,7 @@ describe('Router', function () {
       })
       dispatchSpy = sandbox.spy(store, 'dispatch')
       changeRouteStub = sandbox.stub()
+      sandbox.stub(Router.prototype, 'componentDidMount')
       wrapper = mount(
         <Router changeRoute={changeRouteStub} routePattern={routePattern}>
           <Route path={baseRoute.path} name={baseRoute.name} validate={baseRoute.validate}>
@@ -110,7 +129,7 @@ describe('Router', function () {
         </Router>
       )
     })
-    it('should display the route content', function () {
+    it('should render the route content', function () {
       const baseRoute = wrapper.find('BaseRoute')
       const homeRoute = wrapper.find('HomeRoute')
       expect(baseRoute).to.have.length(1)
