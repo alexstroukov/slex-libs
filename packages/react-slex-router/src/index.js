@@ -5,13 +5,9 @@ import * as actionTypes from './route.actionTypes'
 import * as statuses from './route.statuses'
 import actions from './route.actions'
 import reducers from './route.reducers'
+import replace from './replace'
+import push from './push'
 
-function replace ({ path, extras }) {
-  return router.replace({ path, extras })
-}
-function push ({ path, extras }) {
-  return router.push({ path, extras })
-}
 const initialState = {
   status: statuses.INITIAL,
   routeName: undefined,
