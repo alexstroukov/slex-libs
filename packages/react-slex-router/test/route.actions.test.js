@@ -190,7 +190,7 @@ describe('route.actions', function () {
         const validateRouteError = new Error('testError')
         let validateRouteStub
         beforeEach(function () {
-          validateRouteStub = sandbox.stub().returns(Promise.reject(validateRouteError))
+          validateRouteStub = sandbox.spy(() => Promise.reject(validateRouteError))
         })
         describe('and the route is still pending', function () {
           it('should dispatch a pendingRouteError', function () {
