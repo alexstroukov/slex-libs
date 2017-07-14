@@ -23,10 +23,15 @@ export class Router extends PureComponent {
     const { changeRoute } = this.props
     this.routeStream = router
       .createStream(this.routes)
+    this.routeStreamSubscription = this.routeStream
       .subscribe(nextRoute => {
         const { route: { name: routeName, validate: validateRoute }, routeState } = nextRoute
         changeRoute({ validateRoute, routeName, routeState })
       })
+  }
+
+  componentWillUnmount () {
+    this.routeStreamSubscription.dispose()
   }
 
   render () {
