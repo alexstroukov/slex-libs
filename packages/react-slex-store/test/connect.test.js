@@ -2,8 +2,12 @@ import React, { Component } from 'react'
 import { expect } from 'chai'
 import sinon from 'sinon'
 import connect from '../src/connect'
-import { mount } from 'enzyme'
+import { mount, configure } from 'enzyme'
+import ReactSixteenAdapter from 'enzyme/build/adapters/ReactSixteenAdapter'
 import createStore from 'slex-store'
+
+// need adapter to work with react ^16
+configure({ adapter: new ReactSixteenAdapter() })
 
 describe('reactSlexStore', function () {
   const sandbox = sinon.sandbox.create()
