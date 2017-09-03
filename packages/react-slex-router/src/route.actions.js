@@ -1,16 +1,7 @@
 import * as actionTypes from './route.actionTypes'
 
 class RouteActions {
-
-  constructor () {
-    this.changeRoute = this.changeRoute.bind(this)
-    this.routeLoading = this.routeLoading.bind(this)
-    this.pendingRouteReady = this.pendingRouteReady.bind(this)
-    this.pendingRouteAccessDenied = this.pendingRouteAccessDenied.bind(this)
-    this.pendingRouteError = this.pendingRouteError.bind(this)
-  }
-
-  routeLoading ({ routeName, routeState }) {
+  routeLoading = ({ routeName, routeState }) => {
     const action = {
       type: actionTypes.ROUTE_LOADING,
       routeName,
@@ -19,21 +10,21 @@ class RouteActions {
     return action
   }
 
-  pendingRouteReady () {
+  pendingRouteReady = () => {
     const action = {
       type: actionTypes.PENDING_ROUTE_READY
     }
     return action
   }
 
-  pendingRouteAccessDenied () {
+  pendingRouteAccessDenied = () => {
     const action = {
       type: actionTypes.PENDING_ROUTE_ACCESS_DENIED
     }
     return action
   }
 
-  pendingRouteError ({ error }) {
+  pendingRouteError = ({ error }) => {
     const action = {
       type: actionTypes.PENDING_ROUTE_ERROR,
       error
@@ -41,7 +32,7 @@ class RouteActions {
     return action
   }
 
-  changeRoute ({ validateRoute = () => true, routeName, routeState }) {
+  changeRoute = ({ validateRoute = () => true, routeName, routeState }) => {
     return (dispatch, getState) => {
       const { route: { routeState: { path: currentPath } = {} } } = getState()
       const isAlreadyTheActiveRoute = pathsMatch(currentPath, routeState.path)

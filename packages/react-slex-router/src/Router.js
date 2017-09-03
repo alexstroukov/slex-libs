@@ -1,4 +1,5 @@
-import React, { PureComponent, PropTypes, Children } from 'react'
+import PropTypes from 'prop-types'
+import React, { PureComponent, Children } from 'react'
 import { connect } from 'react-slex-store'
 import Route from './Route'
 import _ from 'lodash'

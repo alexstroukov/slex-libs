@@ -1,4 +1,5 @@
-import React, { PropTypes, Children, PureComponent } from 'react'
+import PropTypes from 'prop-types'
+import React, { Children, PureComponent } from 'react'
 
 class Route extends PureComponent {
   render () {

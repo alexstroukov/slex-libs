@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { mount } from 'enzyme'
+import { mount, configure } from 'enzyme'
+import ReactSixteenAdapter from 'enzyme/build/adapters/ReactSixteenAdapter'
 import { expect } from 'chai'
 import sinon from 'sinon'
 import ConnectedRouter, { Router } from '../src/Router'
@@ -9,6 +10,9 @@ import routeActions from '../src/route.actions'
 import * as routeStatuses from '../src/route.statuses'
 import createStore from 'slex-store'
 import slexRouter from 'slex-router'
+
+// need adapter to work with react ^16
+configure({ adapter: new ReactSixteenAdapter() })
 
 describe('Router', function () {
   const sandbox = sinon.sandbox.create()
@@ -57,7 +61,8 @@ describe('Router', function () {
     })
     it('should dispose slex-router', function () {
       const router = wrapper.find('Router')
-      routeStreamDisposeStub = sandbox.spy(router.node.routeStreamSubscription, 'dispose')
+      debugger
+      routeStreamDisposeStub = sandbox.spy(router.node.instance.routeStreamSubscription, 'dispose')
       wrapper.unmount()
       expect(routeStreamDisposeStub.calledOnce).to.be.true
     })
@@ -156,7 +161,7 @@ describe('Router', function () {
     it('should dispatch changeRoute', function () {
       slexRouter.push({ path: '/home' })
       const router = wrapper.find('Router')
-      const routeStream = router.node.routeStream
+      const routeStream = router.node.instance.routeStream
       return routeStream
         .skip(1)
         .first()

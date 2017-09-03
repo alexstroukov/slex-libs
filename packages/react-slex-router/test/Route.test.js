@@ -1,8 +1,12 @@
 import React, { Component } from 'react'
-import { mount } from 'enzyme'
+import { mount, configure } from 'enzyme'
+import ReactSixteenAdapter from 'enzyme/build/adapters/ReactSixteenAdapter'
 import { expect } from 'chai'
 import sinon from 'sinon'
 import Route from '../src/Route'
+
+// need adapter to work with react ^16
+configure({ adapter: new ReactSixteenAdapter() })
 
 describe('Route', function () {
   const sandbox = sinon.sandbox.create()

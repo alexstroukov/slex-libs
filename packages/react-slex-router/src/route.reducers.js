@@ -1,15 +1,7 @@
 import * as statuses from './route.statuses'
 
 class RouteReducers {
-
-  constructor () {
-    this.routeLoading = this.routeLoading.bind(this)
-    this.pendingRouteReady = this.pendingRouteReady.bind(this)
-    this.pendingRouteAccessDenied = this.pendingRouteAccessDenied.bind(this)
-    this.pendingRouteError = this.pendingRouteError.bind(this)
-  }
-
-  routeLoading (state, action) {
+  routeLoading = (state, action) => {
     const { routeName, routeState } = action
     const nextState = {
       ...state,
@@ -24,7 +16,7 @@ class RouteReducers {
     return nextState
   }
 
-  pendingRouteReady (state, action) {
+  pendingRouteReady = (state, action) => {
     const nextState = {
       ...state,
       ...state.pendingRoute,
@@ -35,7 +27,7 @@ class RouteReducers {
     return nextState
   }
 
-  pendingRouteAccessDenied (state, action) {
+  pendingRouteAccessDenied = (state, action) => {
     const nextState = {
       ...state,
       status: statuses.READY,
@@ -44,7 +36,7 @@ class RouteReducers {
     return nextState
   }
 
-  pendingRouteError (state, action) {
+  pendingRouteError = (state, action) => {
     const { error } = action
     const nextState = {
       ...state,
