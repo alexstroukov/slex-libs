@@ -3,7 +3,7 @@ import { expect } from 'chai'
 import sinon from 'sinon'
 import connect from '../src/connect'
 import { mount, configure } from 'enzyme'
-import ReactSixteenAdapter from 'enzyme/build/adapters/ReactSixteenAdapter'
+import ReactSixteenAdapter from 'enzyme-adapter-react-16'
 import createStore from 'slex-store'
 
 // need adapter to work with react ^16
@@ -41,7 +41,7 @@ describe('reactSlexStore', function () {
       const renderedMyComponent = wrapper.find(MyComponent)
       expect(connectSpy.calledOnce).to.be.true
       expect(connectSpy.firstCall.args[0]).to.equal(store.dispatch)
-      expect(renderedMyComponent.node.props.dispatch).to.equal(store.dispatch)
+      expect(renderedMyComponent.getElement().props.dispatch).to.equal(store.dispatch)
     })
     it('should connect component with getState functionality', function () {
       const initialState = {
@@ -64,7 +64,7 @@ describe('reactSlexStore', function () {
       const renderedMyComponent = wrapper.find(MyComponent)
       expect(connectSpy.calledOnce).to.be.true
       expect(connectSpy.firstCall.args[1]).to.equal(store.getState)
-      expect(renderedMyComponent.node.props.getState).to.equal(store.getState)
+      expect(renderedMyComponent.getElement().props.getState).to.equal(store.getState)
     })
     it('should connect component with its own props', function () {
       const ownProp = 'ownProp'
@@ -86,7 +86,7 @@ describe('reactSlexStore', function () {
 
       expect(connectSpy.calledOnce).to.be.true
       expect(connectSpy.firstCall.args[2].ownProp).to.equal(ownProp)
-      expect(renderedMyComponent.node.props.ownProp).to.equal(ownProp)
+      expect(renderedMyComponent.getElement().props.ownProp).to.equal(ownProp)
     })
   })
 })

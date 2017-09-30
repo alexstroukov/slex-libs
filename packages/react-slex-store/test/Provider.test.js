@@ -4,7 +4,7 @@ import sinon from 'sinon'
 import connect from '../src/connect'
 import Provider from '../src/Provider'
 import { mount, shallow, configure } from 'enzyme'
-import ReactSixteenAdapter from 'enzyme/build/adapters/ReactSixteenAdapter'
+import ReactSixteenAdapter from 'enzyme-adapter-react-16'
 import createStore from 'slex-store'
 
 // need adapter to work with react ^16
