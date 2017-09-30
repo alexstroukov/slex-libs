@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { mount, configure } from 'enzyme'
-import ReactSixteenAdapter from 'enzyme/build/adapters/ReactSixteenAdapter'
+import ReactSixteenAdapter from 'enzyme-adapter-react-16'
 import { expect } from 'chai'
 import sinon from 'sinon'
 import ConnectedRouter, { Router } from '../src/Router'
@@ -61,8 +61,7 @@ describe('Router', function () {
     })
     it('should dispose slex-router', function () {
       const router = wrapper.find('Router')
-      debugger
-      routeStreamDisposeStub = sandbox.spy(router.node.instance.routeStreamSubscription, 'dispose')
+      routeStreamDisposeStub = sandbox.spy(router.instance().routeStreamSubscription, 'dispose')
       wrapper.unmount()
       expect(routeStreamDisposeStub.calledOnce).to.be.true
     })
@@ -161,7 +160,8 @@ describe('Router', function () {
     it('should dispatch changeRoute', function () {
       slexRouter.push({ path: '/home' })
       const router = wrapper.find('Router')
-      const routeStream = router.node.instance.routeStream
+      debugger
+      const routeStream = router.instance().routeStream
       return routeStream
         .skip(1)
         .first()
