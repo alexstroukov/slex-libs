@@ -38,7 +38,7 @@
   "dependencies": {
     "lodash": "4.17.2",
     "react": "16.0.0",
-    "react-slex-store": "0.0.8",
+    "react-slex-store": "0.0.9",
     "slex-router": "0.0.6"
   },
   "devDependencies": {
