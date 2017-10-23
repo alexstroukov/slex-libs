@@ -8,7 +8,7 @@ import Route from '../src/Route'
 import router from '../src'
 import routeActions from '../src/route.actions'
 import * as routeStatuses from '../src/route.statuses'
-import createStore from 'slex-store'
+import slexStore from 'slex-store'
 import slexRouter from 'slex-router'
 
 // need adapter to work with react ^16
@@ -44,11 +44,14 @@ describe('Router', function () {
       validate: () => {}
     }
     beforeEach(function () {
-      store = createStore({
-        reducers: {
-          router
-        }
-      })
+      store =
+        slexStore.createStore(
+          slexStore.createDispatch({
+            reducer: slexStore.createReducer({
+              router
+            })
+          })
+        )
       dispatchSpy = sandbox.spy(store, 'dispatch')
       createStreamSpy = sandbox.spy(slexRouter, 'createStream')
       changeRouteStub = sandbox.stub(routeActions, 'changeRoute').returns(stubChangeRouteAction)
@@ -85,11 +88,14 @@ describe('Router', function () {
       validate: () => {}
     }
     beforeEach(function () {
-      store = createStore({
-        reducers: {
-          router
-        }
-      })
+      store =
+        slexStore.createStore(
+          slexStore.createDispatch({
+            reducer: slexStore.createReducer({
+              router
+            })
+          })
+        )
       dispatchSpy = sandbox.spy(store, 'dispatch')
       createStreamSpy = sandbox.spy(slexRouter, 'createStream')
       changeRouteStub = sandbox.stub(routeActions, 'changeRoute').returns(stubChangeRouteAction)
@@ -138,11 +144,14 @@ describe('Router', function () {
       validate: () => {}
     }
     beforeEach(function () {
-      store = createStore({
-        reducers: {
-          router
-        }
-      })
+      store =
+        slexStore.createStore(
+          slexStore.createDispatch({
+            reducer: slexStore.createReducer({
+              router
+            })
+          })
+        )
       dispatchSpy = sandbox.spy(store, 'dispatch')
       createStreamSpy = sandbox.spy(slexRouter, 'createStream')
       changeRouteStub = sandbox.stub(routeActions, 'changeRoute').returns(stubChangeRouteAction)
@@ -201,11 +210,14 @@ describe('Router', function () {
     }
 
     beforeEach(function () {
-      store = createStore({
-        reducers: {
-          router
-        }
-      })
+      store =
+        slexStore.createStore(
+          slexStore.createDispatch({
+            reducer: slexStore.createReducer({
+              router
+            })
+          })
+        )
       dispatchSpy = sandbox.spy(store, 'dispatch')
       changeRouteStub = sandbox.stub()
       sandbox.stub(Router.prototype, 'componentDidMount')
