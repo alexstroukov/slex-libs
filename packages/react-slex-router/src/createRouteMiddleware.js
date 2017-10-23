@@ -13,7 +13,7 @@ export default function createRouteMiddleware ({ validators = {} }) {
         if (!isAlreadyTheActiveRoute) {
           dispatch(actions.routeLoading({ routeName, routeState }))
           Promise
-            .resolve(validateRoute({ routeName, routeState }))
+            .resolve(validateRoute({ getState, routeName, routeState }))
             .then(routeAllowed => {
               const { route: { pendingRoute: { routeState: { path: pendingPath } = {} } } } = getState()
               const pathIsStillPending = this._pathsMatch(pendingPath, routeState.path)
