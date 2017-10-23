@@ -1,6 +1,6 @@
 {
   "name": "react-slex-router",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "repository": "https://github.com/alexstroukov/react-slex-router",
   "license": "MIT",
   "main": "compiled/reactSlexRouter.js",
