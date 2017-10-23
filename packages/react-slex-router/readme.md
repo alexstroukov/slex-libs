@@ -33,18 +33,20 @@ It differs from that however because `react-slex-router` breaks routing into 3 s
 ```javascript
 import React from 'react'
 import ReactDOM from 'react-dom'
-import createStore from 'slex-store'
+import slexStore from 'slex-store'
 import { Provider } from 'react-slex-store'
-import route, { Router, Route } from 'react-slex-router'
+import route, { Router, Route, createRouteMiddleware } from 'react-slex-router'
 
-const store = createStore({
-  reducers: {
+const store = slexStore.createStore({
+  reducer: slexStore.createReducer({
     route
-  }
+  }),
+  middleware: [
+    createRouteMiddleware({ validators: new Validators() })
+  ]
 })
 
 store.subscribe(renderApp)
-renderApp()
 
 function renderApp (state) {
   ReactDOM.render((
@@ -56,10 +58,10 @@ function renderApp (state) {
         <Route path={'/login'} name={'LOGIN'}>
           <LoginPage />
         </Route>
-        <Route path={'/items'} name={'ITEMS'} validate={validateRoute}>
+        <Route path={'/items'} name={'ITEMS'} validate={'validateItems'}>
           <Items />
         </Route>
-        <Route path={'/items/:id'} name={'ITEM_DETAILS'} validate={validateRoute}>
+        <Route path={'/items/:id'} name={'ITEM_DETAILS'} validate={'validateItemDetails'}>
           <ItemDetails />
         </Route>
       </Router>
@@ -67,9 +69,11 @@ function renderApp (state) {
   ), document.getElementById('app'))
 }
 
-function validateRoute ({ routeName, routeState }) {
-  const userIsAllowerToViewRoute = true
-  return userIsAllowerToViewRoute
+class Validators {
+  validateItems = ({ routeName, routeState }) => {
+    const userIsAllowerToViewRoute = true
+    return userIsAllowerToViewRoute
+  }
 }
 
 ```
@@ -79,7 +83,7 @@ function validateRoute ({ routeName, routeState }) {
 You can validate access to routes by providing a validate function to `Route`. It can be be sync or async and resolve truthy for valid routes `({ routeName, routeState }) => Promise<boolean> || boolean`
 
 ```
-<Route validate={validateRoute} path={path} name={name} />
+<Route validate={validate} path={path} name={name} />
 ```
 
 ## Useful Middleware

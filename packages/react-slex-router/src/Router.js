@@ -26,8 +26,8 @@ export class Router extends PureComponent {
       .createStream(this.routes)
     this.routeStreamSubscription = this.routeStream
       .subscribe(nextRoute => {
-        const { route: { name: routeName, validate: validateRoute }, routeState } = nextRoute
-        changeRoute({ validateRoute, routeName, routeState })
+        const { route: { name: routeName, validate }, routeState } = nextRoute
+        changeRoute({ validate, routeName, routeState })
       })
   }
 
@@ -66,7 +66,7 @@ Router.propTypes = {
 
 export default connect((dispatch, getState, ownProps) => {
   const { route: { routeState: { routePattern } = {} } = {} } = getState()
-  const changeRoute = ({ validateRoute, routeName, routeState }) => dispatch(actions.changeRoute({ validateRoute, routeName, routeState }))
+  const changeRoute = ({ validate, routeName, routeState }) => dispatch(actions.changeRoute({ validate, routeName, routeState }))
   return {
     ...ownProps,
     changeRoute,

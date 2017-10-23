@@ -160,7 +160,6 @@ describe('Router', function () {
     it('should dispatch changeRoute', function () {
       slexRouter.push({ path: '/home' })
       const router = wrapper.find('Router')
-      debugger
       const routeStream = router.instance().routeStream
       return routeStream
         .skip(1)
