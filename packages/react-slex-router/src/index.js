@@ -3,6 +3,7 @@ import Router from './Router'
 import Route from './Route'
 import * as actionTypes from './route.actionTypes'
 import * as statuses from './route.statuses'
+import selectors from './route.selectors'
 import actions from './route.actions'
 import createRouteMiddleware from './createRouteMiddleware'
 import reducers from './route.reducers'
@@ -18,7 +19,7 @@ const initialState = {
   error: undefined
 }
 
-export { Router, Route, createRouteMiddleware, actionTypes, statuses, actions, replace, push }
+export { Router, Route, createRouteMiddleware, actionTypes, statuses, actions, selectors, replace, push }
 export default function reduceRoute (state = initialState, action) {
   switch (action.type) {
     case actionTypes.ROUTE_LOADING:
