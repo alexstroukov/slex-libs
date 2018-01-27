@@ -15,10 +15,23 @@ $ npm install react-slex-store
 ```javascript
 import React from 'react'
 import ReactDOM from 'react-dom'
-import createStore from 'slex-store'
+import slexStore from 'slex-store'
 import { Provider } from 'react-slex-store'
 
-const store = createStore({ ... })
+const store =
+  slexStore.createStore(
+    slexStore.createDispatch({
+      reducer: slexStore.createReducer({
+        ...
+      }),
+      middleware: [
+        ...
+      ],
+      sideEffects: [
+        ...
+      ]
+    })
+  )
 
 store.subscribe(renderApp)
 renderApp()
@@ -53,13 +66,12 @@ export default App
 // Connected Component
 
 import App from './App'
-import testStoreActions from './testStoreActions'
 import { connect } from 'react-slex-store'
 
 export default connect ((dispatch, getState, ownProps) => {
   const { testStore: { propertyFromStore } } = getState()
   const wrappedDispatchFunction = () => {
-    return dispatch(testStoreActions.doSomething())
+    dispatch(...)
   }
   return {
     ...ownProps,
