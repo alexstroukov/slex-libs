@@ -30,17 +30,18 @@
     "mocha": "mocha",
     "watch": "webpack --config webpack/webpack.config.js --watch",
     "build": "webpack --config webpack/webpack.config.js",
-    "test": "mocha --require ./test/setup.js compiled/test",
+    "test": "NODE_ENV=test mocha --require ./test/setup.js compiled/test",
     "clean": "rm -rf compiled",
     "deep-clean": "rm -rf node_modules && npm run clean",
     "prepublishOnly": "rm -rf compiled && webpack --config webpack/src.webpack.config.js"
   },
-  "dependencies": {
-    "lodash": "4.17.2",
-    "react": "16.0.0"
+  "peerDependencies": {
+    "react": "^16.0.0",
+    "slex-store": "^0.1.0"
   },
   "devDependencies": {
-    "slex-store": "0.1.0",
+    "slex-store": "^0.1.0",
+    "react": "16.0.0",
     "react-dom": "16.0.0",
     "react-test-renderer": "16.0.0",
     "enzyme": "3.0.0",
