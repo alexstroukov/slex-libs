@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/alexstroukov/react-slex-store.svg?style=svg)](https://circleci.com/gh/alexstroukov/react-slex-store)
+
 # React Slex Store
 
 ```
