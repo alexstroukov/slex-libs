@@ -5,7 +5,7 @@ import connect from '../src/connect'
 import Provider from '../src/Provider'
 import { mount, shallow, configure } from 'enzyme'
 import ReactSixteenAdapter from 'enzyme-adapter-react-16'
-import createStore from 'slex-store'
+import slexStore from 'slex-store'
 
 // need adapter to work with react ^16
 configure({ adapter: new ReactSixteenAdapter() })
@@ -25,11 +25,15 @@ describe('reactSlexStore', function () {
       const initialState = {
         testProp: 'testProp'
       }
-      const store = createStore({
-        reducers: {
-          testStore: (state = initialState, action) => state
-        }
-      })
+      const store =
+        slexStore.createStore(
+          slexStore.createDispatch({
+            reducer: slexStore.createReducer({
+              testStore: (state = initialState, action) => state
+            })
+          })
+        )
+
       const connectSpy = sandbox.spy((dispatch, getState, ownProps) => {
         return ownProps
       })
@@ -46,11 +50,14 @@ describe('reactSlexStore', function () {
       const initialState = {
         testProp: 'testProp'
       }
-      const store = createStore({
-        reducers: {
-          testStore: (state = initialState, action) => state
-        }
-      })
+      const store =
+        slexStore.createStore(
+          slexStore.createDispatch({
+            reducer: slexStore.createReducer({
+              testStore: (state = initialState, action) => state
+            })
+          })
+        )
       const connectSpy = sandbox.spy((dispatch, getState, ownProps) => {
         return ownProps
       })
