@@ -1,7 +1,9 @@
-# Slex Router
+[![CircleCI](https://circleci.com/gh/alexstroukov/react-slex-router.svg?style=svg)](https://circleci.com/gh/alexstroukov/react-slex-router)
+
+# React Slex Router
 
 ```
-$ npm install slex-router
+$ npm install react-slex-router
 ```
 
 `react-slex-router` is a component driven router implementation for `react`. It is connected to `slex-store` via `react-slex-store` and its state is kept in its own store similar to how `redux-router` combined with `react-router`.
