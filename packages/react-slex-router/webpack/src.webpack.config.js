@@ -22,7 +22,6 @@ const config = {
     sourcePrefix: '\t'
   },
   externals: {
-    'lodash': 'lodash',
     'react': 'react',
     'react-slex-store': 'react-slex-store',
     'slex-router': 'slex-router'
