@@ -1,0 +1,3 @@
+import SidebarButtonIconLoadingPlaceholder from './SidebarButtonIconLoadingPlaceholder'
+export { SidebarButtonIconLoadingPlaceholder }
+export default SidebarButtonIconLoadingPlaceholder

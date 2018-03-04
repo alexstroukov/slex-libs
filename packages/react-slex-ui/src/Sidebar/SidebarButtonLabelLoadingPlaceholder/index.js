@@ -1,0 +1,3 @@
+import SidebarButtonLabelLoadingPlaceholder from './SidebarButtonLabelLoadingPlaceholder'
+export { SidebarButtonLabelLoadingPlaceholder }
+export default SidebarButtonLabelLoadingPlaceholder

@@ -1,0 +1,3 @@
+import GridTileImageLoadingPlaceholder from './GridTileImageLoadingPlaceholder'
+export { GridTileImageLoadingPlaceholder }
+export default GridTileImageLoadingPlaceholder
