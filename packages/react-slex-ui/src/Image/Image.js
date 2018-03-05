@@ -51,7 +51,7 @@ class WrappedImage extends PureComponent {
       // TODO: remove forced loading
       setTimeout(() => {
         this.loadImage(this.state.src)
-      }, 400)
+      }, 1500)
     }
     if (this.state.placeholderSrc) {
       this.loadPlaceholder(this.state.placeholderSrc)
@@ -72,38 +72,31 @@ class WrappedImage extends PureComponent {
     }
   }
   render () {
-    const { classes, className, ...rest } = this.props
+    const { classes, className, src: propsSrc, placeholderSrc: propsPlaceholderSrc, ...rest } = this.props
     const { src, placeholderSrc, loading, loadingPlaceholder } = this.state
-    if (!loading) {
-      return (
+    return (
+      <div
+        className={classNames(
+          classes.container,
+          className
+        )}
+      >
         <img
-          className={classNames(
-            classes.container,
-            className
-          )}
+          className={classes.image}
           src={src}
           {...rest}
         />
-      )
-    } else if (!loadingPlaceholder) {
-      return (
         <img
-          className={classNames(
-            classes.container,
-            className
-          )}
+          className={classNames(classes.placeholderImage, {
+            [classes.hidden]: !loading
+          })}
           src={placeholderSrc}
           {...rest}
         />
-      )
-    } else {
-      return (
         <div
-          className={classNames(
-            classes.container,
-            classes.placeholder,
-            className
-          )}
+          className={classNames(classes.placeholder, {
+            [classes.hidden]: src || placeholderSrc
+          })}
           {...rest}
         >
           <Icon
@@ -112,8 +105,8 @@ class WrappedImage extends PureComponent {
             insert_photo
           </Icon>
         </div>
-      )
-    }
+      </div>
+    )
   }
 }
 
