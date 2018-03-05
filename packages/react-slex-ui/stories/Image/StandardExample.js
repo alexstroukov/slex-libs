@@ -1,19 +1,17 @@
 import React, { PureComponent } from 'react'
 import Image from '../../src/Image'
 
-class LoadingExample extends PureComponent {
+class StandardExample extends PureComponent {
   state = {
-    src: undefined,
-    placeholderSrc: undefined
+    src: undefined
   }
   componentDidMount () {
     this.setState({
-      src: `https://picsum.photos/${this._container.clientWidth}/${this._container.clientHeight}?image=0`,
-      placeholderSrc: `https://picsum.photos/${this._container.clientWidth * 0.4}/${this._container.clientHeight * 0.4}?image=0`
+      src: `https://picsum.photos/${this._container.clientWidth}/${this._container.clientHeight}?image=0`
     })
   }
   render () {
-    const { src, placeholderSrc } = this.state
+    const { src } = this.state
     return (
       <div style={{
         width: 200,
@@ -34,7 +32,6 @@ class LoadingExample extends PureComponent {
           >
             <Image
               src={src}
-              placeholderSrc={placeholderSrc}
             />
           </div>
         </div>
@@ -42,4 +39,4 @@ class LoadingExample extends PureComponent {
     )
   }
 }
-export default LoadingExample
+export default StandardExample
