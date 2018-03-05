@@ -1,8 +1,10 @@
 import React, { PureComponent } from 'react'
 import Image from '../../src/Image'
 
-class PlaceholderExample extends PureComponent {
+class LoadingExample extends PureComponent {
   render () {
+    const src = 'https://picsum.photos/600/400?image=0'
+    const placeholderSrc = 'https://picsum.photos/60/40?image=0'
     return (
       <div style={{
         width: 200,
@@ -18,11 +20,14 @@ class PlaceholderExample extends PureComponent {
             left: 0,
             right: 0
           }}>
-            <Image />
+            <Image
+              src={src}
+              placeholderSrc={placeholderSrc}
+            />
           </div>
         </div>
       </div>
     )
   }
 }
-export default PlaceholderExample
+export default LoadingExample
