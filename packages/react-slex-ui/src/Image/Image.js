@@ -52,10 +52,7 @@ class WrappedImage extends PureComponent {
   }
   componentWillMount () {
     if (this.state.src) {
-      // TODO: remove forced loading
-      setTimeout(() => {
-        this.loadImage(this.state.src)
-      }, 1500)
+      this.loadImage(this.state.src)
     }
     if (this.state.placeholderSrc) {
       this.loadPlaceholder(this.state.placeholderSrc)
@@ -64,9 +61,7 @@ class WrappedImage extends PureComponent {
   componentWillReceiveProps (nextProps) {
     if (nextProps.src !== this.props.src) {
       if (nextProps.src) {
-        setTimeout(() => {
-          this.loadImage(nextProps.src)
-        }, 1400)
+        this.loadImage(nextProps.src)
       }
     }
     if (nextProps.placeholderSrc !== this.props.placeholderSrc) {
@@ -108,7 +103,9 @@ class WrappedImage extends PureComponent {
         )}
       >
         <img
-          className={classes.image}
+          className={classNames(classes.image, {
+            [classes.hidden]: !this._container
+          })}
           src={src}
           {...rest}
         />

@@ -15,7 +15,7 @@ const styles = theme => {
       top: 0,
       bottom: 0,
       width: '100%',
-      transition: 'opacity 1s',
+      transition: 'opacity 1200ms',
       opacity: 1
     },
     hidden: {
@@ -28,7 +28,7 @@ const styles = theme => {
       top: 0,
       bottom: 0,
       width: '100%',
-      transition: 'opacity 200ms',
+      transition: 'opacity 1200ms',
       opacity: 1,
       backgroundColor: '#d6d5d5',
       display: 'flex',
