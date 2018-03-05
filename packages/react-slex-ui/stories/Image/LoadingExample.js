@@ -8,7 +8,7 @@ class LoadingExample extends PureComponent {
   }
   componentDidMount () {
     this.setState({
-      src: `https://picsum.photos/${this._container.clientWidth}/${this._container.clientHeight}?image=0`,
+      src: `https://picsum.photos/${this._container.clientWidth * 10}/${this._container.clientHeight * 10}?image=0`,
       placeholderSrc: `https://picsum.photos/${this._container.clientWidth * 0.4}/${this._container.clientHeight * 0.4}?image=0`
     })
   }
