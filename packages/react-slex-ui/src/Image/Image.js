@@ -5,6 +5,7 @@ import { withStyles } from 'material-ui/styles'
 import Icon from 'material-ui/Icon'
 import styles from './styles'
 import classNames from 'classnames'
+import StackBlur from 'stackblur-canvas'
 
 class WrappedImage extends PureComponent {
   state = {
@@ -16,19 +17,20 @@ class WrappedImage extends PureComponent {
   static cache = {}
   static loadImage = _.memoize(
     src => new Promise((resolve, reject) => {
-      const img = new Image()
-      img.onload = function () {
-        WrappedImage.cache[src] = true
-        resolve(src)
+      const image = new Image()
+      image.crossOrigin = 'Anonymous'
+      image.onload = function () {
+        WrappedImage.cache[src] = image
+        resolve(image)
       }
-      img.src = src
+      image.src = src
     })
   )
   loadImage = src => {
     this.setState({ loading: true, src })
     return WrappedImage
       .loadImage(src)
-      .then(src => {
+      .then(image => {
         this.setState({ loading: false })
       })
       .catch(error => {
@@ -39,8 +41,10 @@ class WrappedImage extends PureComponent {
     this.setState({ loadingPlaceholder: true, placeholderSrc })
     return WrappedImage
       .loadImage(placeholderSrc)
-      .then(placeholderSrc => {
-        this.setState({ loadingPlaceholder: false })
+      .then(placeholderImage => {
+        this.setState({ loadingPlaceholder: false }, () => {
+          this.drawPlaceholderImage(placeholderImage)
+        })
       })
       .catch(error => {
         this.setState({ loadingPlaceholder: false })
@@ -71,11 +75,33 @@ class WrappedImage extends PureComponent {
       }
     }
   }
+  drawPlaceholderImage = (image) => {
+    const context = this._canvas && this._canvas.getContext('2d')
+    const width = this._container
+      ? this._container.clientWidth
+      : 0
+    const height = this._container
+      ? this._container.clientHeight
+      : 0
+    if (context) {
+      context.drawImage(image, 0, 0, width, height)
+      context.width = width
+      context.height = height
+      StackBlur.canvasRGB(this._canvas, 0, 0, width, height, 10)
+    }
+  }
   render () {
     const { classes, className, src: propsSrc, placeholderSrc: propsPlaceholderSrc, ...rest } = this.props
-    const { src, placeholderSrc, loading, loadingPlaceholder } = this.state
+    const { src, placeholderSrc, loading } = this.state
+    const width = this._container
+      ? this._container.clientWidth
+      : 0
+    const height = this._container
+      ? this._container.clientHeight
+      : 0
     return (
       <div
+        ref={container => { this._container = container }}
         className={classNames(
           classes.container,
           className
@@ -86,7 +112,10 @@ class WrappedImage extends PureComponent {
           src={src}
           {...rest}
         />
-        <img
+        <canvas
+          ref={canvas => { this._canvas = canvas }}
+          width={width}
+          height={height}
           className={classNames(classes.placeholderImage, {
             [classes.hidden]: !loading
           })}

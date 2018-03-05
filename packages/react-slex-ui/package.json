@@ -48,7 +48,8 @@
     "react-autosuggest": "9.3.2",
     "react-dom": "16.0.0",
     "react-motion": "0.5.1",
-    "recompose": "0.26.0"
+    "recompose": "0.26.0",
+    "stackblur-canvas": "1.4.1"
   },
   "devDependencies": {
     "babel": "6.23.0",
