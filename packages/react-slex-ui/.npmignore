@@ -3,6 +3,8 @@ webpack
 typings
 test
 src
+stories
 .vscode
 .gitignore
+.storybook
 jsconfig.json
