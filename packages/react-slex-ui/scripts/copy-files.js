@@ -3,12 +3,11 @@ const fs = require('fs')
 function movePackageJson () {
   return readFile(`./package.json`)
     .then(content => {
-      const { scripts, devDependencies, ...packageDataOther } = JSON.parse(content);
+      const { standard, scripts, devDependencies, ...packageDataOther } = JSON.parse(content);
       const newPackageData = {
         ...packageDataOther,
         main: './index.js',
-        module: './reactSlexUi.js',
-        private: false
+        module: './reactSlexUi.js'
       }
       return writeFile(`./compiled/package.json`, JSON.stringify(newPackageData, null, 2))
     })
