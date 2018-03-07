@@ -2,7 +2,8 @@
   "name": "react-slex-ui",
   "version": "0.0.2",
   "description": "react-slex-ui is a component library for react ",
-  "main": "compiled/reactSlexUi.js",
+  "main": "compiled/index.js",
+  "module": "compiled/reactSlexUi.js",
   "standard": {
     "parser": "babel-eslint",
     "plugins": [
@@ -28,14 +29,18 @@
   "scripts": {
     "mocha": "mocha",
     "watch": "webpack --config webpack/webpack.config.js --watch",
-    "build": "webpack --config webpack/webpack.config.js",
+    "build-bundle": "webpack --config webpack/webpack.config.js",
+    "build-modules": "babel ./src --out-dir ./compiled && npm run copy-files",
+    "build": "npm run build-bundle && npm run build-modules && npm run copy-files",
+    "copy-files": "node ./scripts/copy-files.js",
     "test": "mocha compiled/test",
     "clean": "rm -rf compiled",
     "deep-clean": "rm -rf node_modules && npm run clean",
-    "prepublishOnly": "rm -rf compiled && webpack --config webpack/src.webpack.config.js",
+    "prepublishOnly": "rm -rf compiled && npm run build",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "deploy-storybook": "storybook-to-ghpages"
+    "deploy-storybook": "storybook-to-ghpages",
+    "release": "npm publish compiled"
   },
   "license": "MIT",
   "dependencies": {
