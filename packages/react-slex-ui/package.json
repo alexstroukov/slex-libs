@@ -1,6 +1,6 @@
 {
   "name": "react-slex-ui",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "react-slex-ui is a component library for react ",
   "main": "compiled/index.js",
   "module": "compiled/reactSlexUi.js",
