@@ -29,10 +29,8 @@
   },
   "scripts": {
     "mocha": "mocha",
-    "watch": "webpack --config webpack/webpack.config.js --watch",
-    "build-bundle": "webpack --config webpack/webpack.config.js",
-    "build-modules": "babel ./src --out-dir ./components",
-    "build": "npm run build-bundle && npm run build-modules",
+    "watch": "babel ./src --out-dir ./components --watch",
+    "build": "babel ./src --out-dir ./components",
     "clean": "rm -rf components",
     "deep-clean": "rm -rf node_modules && npm run clean",
     "prepublishOnly": "rm -rf components && npm run build",
