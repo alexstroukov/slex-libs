@@ -3,8 +3,8 @@
   "version": "0.1.1",
   "repository": "https://github.com/alexstroukov/react-slex-ui",
   "description": "react-slex-ui is a component library for react ",
-  "main": "compiled/index.js",
-  "module": "compiled/reactSlexUi.js",
+  "main": "components/index.js",
+  "module": "components/reactSlexUi.js",
   "standard": {
     "parser": "babel-eslint",
     "plugins": [
@@ -31,17 +31,14 @@
     "mocha": "mocha",
     "watch": "webpack --config webpack/webpack.config.js --watch",
     "build-bundle": "webpack --config webpack/webpack.config.js",
-    "build-modules": "babel ./src --out-dir ./compiled && npm run copy-files",
-    "build": "npm run build-bundle && npm run build-modules && npm run copy-files",
-    "copy-files": "node ./scripts/copy-files.js",
-    "test": "mocha compiled/test",
-    "clean": "rm -rf compiled",
+    "build-modules": "babel ./src --out-dir ./components",
+    "build": "npm run build-bundle && npm run build-modules",
+    "clean": "rm -rf components",
     "deep-clean": "rm -rf node_modules && npm run clean",
-    "prepublishOnly": "rm -rf compiled && npm run build",
+    "prepublishOnly": "rm -rf components && npm run build",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "deploy-storybook": "storybook-to-ghpages",
-    "release": "npm publish compiled"
+    "deploy-storybook": "storybook-to-ghpages"
   },
   "license": "MIT",
   "dependencies": {

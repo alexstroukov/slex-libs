@@ -1,5 +1,6 @@
 node_modules/
 jspm_packages/
 compiled/
+components/
 npm-debug.log
 storybook-static

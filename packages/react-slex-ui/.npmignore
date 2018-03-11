@@ -5,6 +5,7 @@ test
 src
 stories
 .vscode
+.babelrc
 .gitignore
 .storybook
 jsconfig.json

@@ -10,7 +10,7 @@ const config = {
   plugins: [],
   profile: true,
   output: {
-    path: path.resolve(__dirname, '../compiled'),
+    path: path.resolve(__dirname, '../components'),
     filename: 'reactSlexUi.js',
     libraryTarget: 'umd',
     pathinfo: true,
