@@ -31,7 +31,9 @@ class WrappedImage extends PureComponent {
     return WrappedImage
       .loadImage(src)
       .then(image => {
-        this.setState({ loading: false })
+        setTimeout(() => {
+          this.setState({ loading: false })
+        }, 600)
       })
       .catch(error => {
         this.setState({ loading: false })
@@ -82,12 +84,12 @@ class WrappedImage extends PureComponent {
       context.drawImage(image, 0, 0, width, height)
       context.width = width
       context.height = height
-      StackBlur.canvasRGB(this._canvas, 0, 0, width, height, 10)
+      StackBlur.canvasRGB(this._canvas, 0, 0, width, height, 16)
     }
   }
   render () {
-    const { classes, className, src: propsSrc, placeholderSrc: propsPlaceholderSrc, ...rest } = this.props
-    const { src, placeholderSrc, loading } = this.state
+    const { classes, className, src: propsSrc, placeholderSrc: propsPlaceholderSrc, placeholder = true, ...rest } = this.props
+    const { src, placeholderSrc, loading, loadingPlaceholder } = this.state
     const width = this._container
       ? this._container.clientWidth
       : 0
@@ -102,35 +104,37 @@ class WrappedImage extends PureComponent {
           className
         )}
       >
-        <img
-          className={classNames(classes.image, {
-            [classes.hidden]: !this._container
-          })}
-          src={src}
+        <div
+          className={classNames(classes.placeholder)}
           {...rest}
-        />
-        <canvas
+        >
+          {src || placeholderSrc || !placeholder
+            ? null
+            : <Icon
+              className={classes.icon}
+            >
+              insert_photo
+            </Icon>
+          }
+        </div>
+        {this._container && <canvas
           ref={canvas => { this._canvas = canvas }}
           width={width}
           height={height}
           className={classNames(classes.placeholderImage, {
-            [classes.hidden]: !loading
+            [classes.hidden]: (loadingPlaceholder && placeholderSrc) || (!loading && src)
+            // [classes.hidden]: !this._container || (loadingPlaceholder && placeholderSrc) || (!loading && src)
           })}
           src={placeholderSrc}
           {...rest}
-        />
-        <div
-          className={classNames(classes.placeholder, {
-            [classes.hidden]: src || placeholderSrc
+        />}
+        <img
+          className={classNames(classes.image, {
+            [classes.hidden]: loading || (loadingPlaceholder && placeholderSrc)
           })}
+          src={src}
           {...rest}
-        >
-          <Icon
-            className={classes.icon}
-          >
-            insert_photo
-          </Icon>
-        </div>
+        />
       </div>
     )
   }

@@ -7,7 +7,8 @@ const styles = theme => {
     image: {
       width: '100%',
       height: '100%',
-      borderRadius: '2px'
+      borderRadius: '2px',
+      overflow: 'hidden'
     }
   }
 }

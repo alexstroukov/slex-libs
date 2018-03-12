@@ -13,43 +13,28 @@ class GridTileImage extends PureComponent {
       loading,
       dashed,
       className,
-      src = 'https://placeimg.com/600/400/tech/grayscale',
-      placeholderSrc = 'https://placeimg.com/6/4/tech/grayscale',
       ...rest
     } = this.props
-    if (loading) {
-      return (
-        <div
-          className={classNames(
-            classes.container,
-            className
-          )}
-          {...rest}
-        >
-          <GridTileImageLoadingPlaceholder dashed={dashed} {...rest} />
-        </div>
-      )
-    } else {
-      return (
-        <div
-          className={classNames(
-            classes.container,
-            className
-          )}
-          {...rest}
-        >
-          <Image
-            src={src}
-            placeholderSrc={placeholderSrc}
+    return (
+      <div
+        className={classNames(
+          classes.container,
+          className
+        )}
+        {...rest}
+      >
+        {loading
+          ? <GridTileImageLoadingPlaceholder dashed={dashed} {...rest} />
+          : <Image
             className={classNames(
               classes.image,
               className
             )}
             {...rest}
           />
-        </div>
-      )
-    }
+        }
+      </div>
+    )
   }
 }
 
@@ -60,7 +45,7 @@ GridTileImage.propTypes = {
   children: PropTypes.any
 }
 
-export default withStyles(styles)(GridTileImage)
+export default withStyles(styles, { flip: true })(GridTileImage)
 
 // import React, { PureComponent } from 'react'
 // import PropTypes from 'prop-types'

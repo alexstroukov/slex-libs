@@ -8,36 +8,25 @@ import GridTileLabelLoadingPlaceholder from '../GridTileLabelLoadingPlaceholder'
 class GridTileLabel extends PureComponent {
   render () {
     const { classes, className, children, loading, dashed, ...rest } = this.props
-    if (loading) {
-      return (
-        <div
-          className={classNames(
-            classes.container,
-            className
-          )}
-          {...rest}
-        >
-          <GridTileLabelLoadingPlaceholder dashed={dashed} {...rest} />
-        </div>
-      )
-    } else {
-      return (
-        <div
-          className={classNames(
-            classes.container,
-            className
-          )}
-          {...rest}
-        >
-          <div
+    return (
+      <div
+        className={classNames(
+          classes.container,
+          className
+        )}
+        {...rest}
+      >
+        {loading
+          ? <GridTileLabelLoadingPlaceholder dashed={dashed} {...rest} />
+          : <div
             className={classes.text}
             noWrap
           >
             {children}
           </div>
-        </div>
-      )
-    }
+        }
+      </div>
+    )
   }
 }
 
