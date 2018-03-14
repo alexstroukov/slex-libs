@@ -14,6 +14,7 @@ class WrappedImage extends PureComponent {
     loadingPlaceholder: true,
     placeholderSrc: this.props.placeholderSrc
   }
+  initial = true
   static cache = {}
   static loadImage = _.memoize(
     src => new Promise((resolve, reject) => {
@@ -31,9 +32,14 @@ class WrappedImage extends PureComponent {
     return WrappedImage
       .loadImage(src)
       .then(image => {
-        setTimeout(() => {
+        if (this.initial) {
+          this.initial = false
+          setTimeout(() => {
+            this.setState({ loading: false })
+          }, 1600)
+        } else {
           this.setState({ loading: false })
-        }, 600)
+        }
       })
       .catch(error => {
         this.setState({ loading: false })
@@ -59,6 +65,9 @@ class WrappedImage extends PureComponent {
     if (this.state.placeholderSrc) {
       this.loadPlaceholder(this.state.placeholderSrc)
     }
+  }
+  componentDidMount () {
+    this.setState({ fadeIn: true })
   }
   componentWillReceiveProps (nextProps) {
     if (nextProps.src !== this.props.src) {
@@ -89,7 +98,7 @@ class WrappedImage extends PureComponent {
   }
   render () {
     const { classes, className, src: propsSrc, placeholderSrc: propsPlaceholderSrc, placeholder = true, ...rest } = this.props
-    const { src, placeholderSrc, loading, loadingPlaceholder } = this.state
+    const { src, placeholderSrc, loading, loadingPlaceholder, fadeIn } = this.state
     const width = this._container
       ? this._container.clientWidth
       : 0
@@ -105,7 +114,9 @@ class WrappedImage extends PureComponent {
         )}
       >
         <div
-          className={classNames(classes.placeholder)}
+          className={classNames(classes.placeholder, {
+            [classes.hidden]: !fadeIn
+          })}
           {...rest}
         >
           {src || placeholderSrc || !placeholder
@@ -122,8 +133,7 @@ class WrappedImage extends PureComponent {
           width={width}
           height={height}
           className={classNames(classes.placeholderImage, {
-            [classes.hidden]: (loadingPlaceholder && placeholderSrc) || (!loading && src)
-            // [classes.hidden]: !this._container || (loadingPlaceholder && placeholderSrc) || (!loading && src)
+            [classes.hidden]: this.initial
           })}
           src={placeholderSrc}
           {...rest}

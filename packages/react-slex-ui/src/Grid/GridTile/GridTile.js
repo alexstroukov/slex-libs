@@ -31,7 +31,11 @@ class GridTile extends PureComponent {
             {tileImageContent}
           </div>
         </div>
-        {tileTextContent}
+        <div
+          className={classes.textContainer}
+        >
+          {tileTextContent}
+        </div>
       </Grid>
     )
   }

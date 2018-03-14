@@ -1,9 +1,8 @@
 const styles = theme => {
   return {
     container: {
-      display: 'flex',
-      flex: 1,
-      height: theme.slexUi.sidebar.lineHeight,
+      width: '100%',
+      height: '100%',
       borderRadius: '2px',
       backgroundColor: '#939292'
     },

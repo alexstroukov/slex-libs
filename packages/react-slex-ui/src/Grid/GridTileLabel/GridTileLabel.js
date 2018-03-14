@@ -4,10 +4,16 @@ import { withStyles } from 'material-ui/styles'
 import styles from './styles'
 import classNames from 'classnames'
 import GridTileLabelLoadingPlaceholder from '../GridTileLabelLoadingPlaceholder'
+import Text from '../../Text'
 
 class GridTileLabel extends PureComponent {
+  state = {}
+  componentDidMount () {
+    this.setState({ fadeIn: true })
+  }
   render () {
-    const { classes, className, children, loading, dashed, ...rest } = this.props
+    const { classes, className, label, loading, dashed, ...rest } = this.props
+    const { fadeIn } = this.state
     return (
       <div
         className={classNames(
@@ -16,15 +22,26 @@ class GridTileLabel extends PureComponent {
         )}
         {...rest}
       >
-        {loading
-          ? <GridTileLabelLoadingPlaceholder dashed={dashed} {...rest} />
-          : <div
-            className={classes.text}
+        <div
+          className={classNames(classes.textContainer)}
+        >
+          <Text
             noWrap
+            className={classes.text}
           >
-            {children}
-          </div>
-        }
+            {label}
+          </Text>
+        </div>
+        <div
+          className={classNames(classes.placeholderContainer, {
+            [classes.hidden]: !loading || !fadeIn
+          })}
+        >
+          <GridTileLabelLoadingPlaceholder
+            dashed={dashed}
+            {...rest}
+          />
+        </div>
       </div>
     )
   }
@@ -33,7 +50,7 @@ class GridTileLabel extends PureComponent {
 GridTileLabel.propTypes = {
   classes: PropTypes.object.isRequired,
   className: PropTypes.string,
-  children: PropTypes.any
+  label: PropTypes.any
 }
 
 export default withStyles(styles)(GridTileLabel)

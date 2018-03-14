@@ -2,7 +2,6 @@ import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import SwapTransitionProvider from '../SwapTransitionProvider'
 import { spring } from 'react-motion'
-import _ from 'lodash'
 
 class SwapTransition extends Component {
   _getTransitionsProps = () => {

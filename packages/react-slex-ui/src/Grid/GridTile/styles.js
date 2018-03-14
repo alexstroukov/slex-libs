@@ -8,6 +8,9 @@ const styles = theme => {
       paddingTop: '66%',
       position: 'relative'
     },
+    textContainer: {
+      paddingTop: 8
+    },
     image: {
       position: 'absolute',
       top: 0,

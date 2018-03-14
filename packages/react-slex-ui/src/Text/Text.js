@@ -1,14 +1,18 @@
 import PropTypes from 'prop-types'
-import React from 'react'
+import React, { PureComponent } from 'react'
 import Typography from 'material-ui/Typography'
 
-const Text = (props) => {
-  const { children, ...rest } = props
-  return (
-    <Typography {...rest}>
-      {children}
-    </Typography>
-  )
+class Text extends PureComponent {
+  render () {
+    const { children, ...rest } = this.props
+    return (
+      <Typography
+        {...rest}
+      >
+        {children}
+      </Typography>
+    )
+  }
 }
 
 export default Text
