@@ -8,18 +8,12 @@ import Text from '../../Text'
 
 class GridTileLabel extends PureComponent {
   state = {
-    fadeIn: false,
     loading: true
   }
   componentDidMount () {
     const { loading } = this.props
-    if (loading) {
+    if (!loading) {
       this.setState({
-        fadeIn: true
-      })
-    } else {
-      this.setState({
-        fadeIn: true,
         loading: false
       })
     }
@@ -37,7 +31,7 @@ class GridTileLabel extends PureComponent {
   }
   render () {
     const { classes, className, label, dashed, ...rest } = this.props
-    const { fadeIn, loading } = this.state
+    const { loading } = this.state
     return (
       <div
         className={classNames(
@@ -48,7 +42,7 @@ class GridTileLabel extends PureComponent {
       >
         <div
           className={classNames(classes.textContainer, {
-            [classes.hidden]: loading || !fadeIn
+            [classes.hidden]: loading
           })}
         >
           <Text
@@ -60,7 +54,7 @@ class GridTileLabel extends PureComponent {
         </div>
         <div
           className={classNames(classes.placeholderContainer, {
-            [classes.hidden]: !this.props.loading || !fadeIn
+            [classes.hidden]: !this.props.loading
           })}
         >
           <GridTileLabelLoadingPlaceholder

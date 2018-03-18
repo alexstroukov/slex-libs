@@ -1,6 +1,7 @@
 const styles = theme => {
   return {
     container: {
+      display: 'flex',
       height: '100%',
       borderRadius: '2px',
       width: '100%',

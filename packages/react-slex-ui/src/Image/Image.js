@@ -66,9 +66,6 @@ class WrappedImage extends PureComponent {
       this.loadPlaceholder(this.state.placeholderSrc)
     }
   }
-  componentDidMount () {
-    this.setState({ fadeIn: true })
-  }
   componentWillReceiveProps (nextProps) {
     if (nextProps.src !== this.props.src) {
       if (nextProps.src) {
@@ -98,7 +95,7 @@ class WrappedImage extends PureComponent {
   }
   render () {
     const { classes, className, src: propsSrc, placeholderSrc: propsPlaceholderSrc, placeholder = true, ...rest } = this.props
-    const { src, placeholderSrc, loading, loadingPlaceholder, fadeIn } = this.state
+    const { src, placeholderSrc, loading, loadingPlaceholder } = this.state
     const width = this._container
       ? this._container.clientWidth
       : 0
@@ -114,9 +111,7 @@ class WrappedImage extends PureComponent {
         )}
       >
         <div
-          className={classNames(classes.placeholder, {
-            [classes.hidden]: !fadeIn
-          })}
+          className={classNames(classes.placeholder)}
           {...rest}
         >
           {src || placeholderSrc || !placeholder
