@@ -4,7 +4,7 @@ import { withStyles } from 'material-ui/styles'
 import styles from './styles'
 import classNames from 'classnames'
 
-class HeaderButtonLoadingPlaceholder extends PureComponent {
+class HeaderButtonLabelLoadingPlaceholder extends PureComponent {
   render () {
     const { classes, className, dashed, ...rest } = this.props
     return (
@@ -14,4 +14,4 @@ class HeaderButtonLoadingPlaceholder extends PureComponent {
     )
   }
 }
-export default withStyles(styles)(HeaderButtonLoadingPlaceholder)
+export default withStyles(styles)(HeaderButtonLabelLoadingPlaceholder)

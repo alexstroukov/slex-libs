@@ -74,11 +74,16 @@ const palette = {
   }
 }
 
-const header = {
-  fontSize: 12,
-  lineHeight: 12,
+const headerButton = {
   color: palette.primary['500'],
   buttonPadding: spacing.unit * 2
+}
+
+const headerButtonLabel = {
+  size: 12,
+  fontWeight: 400,
+  fontFamily: typography.fontFamily,
+  color: typography.secondaryTextColor
 }
 
 const pageIcon = {
@@ -130,7 +135,8 @@ const gridTileLabel = {
 const theme = createMuiTheme({
   slexUi: {
     sidebar,
-    header,
+    headerButton,
+    headerButtonLabel,
     iconButton,
     roundButton,
     badge,

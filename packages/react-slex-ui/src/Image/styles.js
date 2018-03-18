@@ -12,7 +12,7 @@ const styles = theme => {
       top: 0,
       bottom: 0,
       width: '100%',
-      transition: 'opacity 1600ms',
+      transition: 'opacity 1000ms',
       opacity: 1
     },
     placeholderImage: {

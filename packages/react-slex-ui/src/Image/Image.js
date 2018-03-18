@@ -36,7 +36,7 @@ class WrappedImage extends PureComponent {
           this.initial = false
           setTimeout(() => {
             this.setState({ loading: false })
-          }, 1600)
+          }, 1000)
         } else {
           this.setState({ loading: false })
         }

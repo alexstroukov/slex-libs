@@ -1,0 +1,3 @@
+import HeaderButtonLabelLoadingPlaceholder from './HeaderButtonLabelLoadingPlaceholder'
+export { HeaderButtonLabelLoadingPlaceholder }
+export default HeaderButtonLabelLoadingPlaceholder

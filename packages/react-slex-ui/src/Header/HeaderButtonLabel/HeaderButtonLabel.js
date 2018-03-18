@@ -1,12 +1,12 @@
-import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
+import React, { PureComponent } from 'react'
 import { withStyles } from 'material-ui/styles'
+import HeaderButtonLabelLoadingPlaceholder from '../HeaderButtonLabelLoadingPlaceholder'
+import Text from '../../Text'
 import styles from './styles'
 import classNames from 'classnames'
-import GridTileLabelLoadingPlaceholder from '../GridTileLabelLoadingPlaceholder'
-import Text from '../../Text'
 
-class GridTileLabel extends PureComponent {
+class HeaderButtonLabel extends PureComponent {
   state = {
     fadeIn: false,
     loading: true
@@ -63,7 +63,7 @@ class GridTileLabel extends PureComponent {
             [classes.hidden]: !this.props.loading || !fadeIn
           })}
         >
-          <GridTileLabelLoadingPlaceholder
+          <HeaderButtonLabelLoadingPlaceholder
             dashed={dashed}
             {...rest}
           />
@@ -73,10 +73,14 @@ class GridTileLabel extends PureComponent {
   }
 }
 
-GridTileLabel.propTypes = {
+HeaderButtonLabel.propTypes = {
   classes: PropTypes.object.isRequired,
   className: PropTypes.string,
-  label: PropTypes.any
+
+  right: PropTypes.bool,
+  active: PropTypes.bool,
+  dashed: PropTypes.bool,
+  label: PropTypes.string
 }
 
-export default withStyles(styles)(GridTileLabel)
+export default withStyles(styles)(HeaderButtonLabel)
