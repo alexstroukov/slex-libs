@@ -1,4 +1,5 @@
 import * as routeStatuses from './route.statuses'
+import _ from 'lodash'
 
 class RouteSelectors {
   getLoading = (state) => {
@@ -7,8 +8,27 @@ class RouteSelectors {
         status
       }
     } = state
-    return status === routeStatuses.LOADING
+    return this._getLoadingFromStatus(status)
   }
+  getRoute = (state) => {
+    const {
+      route: {
+        routeState = {},
+        routeName,
+        status
+      }
+    } = state
+    const loading = this._getLoadingFromStatus(status)
+    return this._getRoute(routeName, routeState, loading)
+  }
+  _getLoadingFromStatus = status => status === routeStatuses.LOADING
+  _getRoute = _.memoize((routeName, routeState, loading) => {
+    return {
+      routeName,
+      routeState,
+      loading
+    }
+  })
   getRouteState = (state) => {
     const {
       route: {

@@ -5,10 +5,12 @@ import Route from './Route'
 import _ from 'lodash'
 import router from 'slex-router'
 import actions from './route.actions'
+import selectors from './route.selectors'
 
 export class Router extends PureComponent {
-  constructor (props) {
-    super(props)
+  constructor (props, context) {
+    super(props, context)
+    this.store = props.store
     this.routes = _.chain([props.children])
       .flatten()
       .map(child => ({
@@ -18,25 +20,52 @@ export class Router extends PureComponent {
       }))
       .reduce((memo, next) => ({ ...memo, [next.path]: next }), {})
       .value()
+    this.state = {
+      routePattern: _.chain(this.store.getState())
+        .get('route.routeState.routePattern')
+        .value()
+    }
   }
-
+  getChildContext () {
+    return {
+      routeStore: this.store
+    }
+  }
   componentDidMount () {
-    const { changeRoute } = this.props
+    this.subscribeStore()
+    this.subscribeRouter()
+  }
+  componentWillUnmount () {
+    this.routeStreamSubscription && this.routeStreamSubscription.dispose()
+    this.unsubscribeStore && this.unsubscribeStore()
+  }
+  subscribeStore = () => {
+    this.unsubscribeStore = this.store.subscribe((state) => {
+      const routePattern = _.chain(state)
+        .get('route.routeState.routePattern')
+        .value()
+      if (this.state.routePattern !== routePattern) {
+        this.setState({
+          routePattern
+        })
+      }
+    })
+  }
+  subscribeRouter = () => {
     this.routeStream = router
       .createStream(this.routes)
     this.routeStreamSubscription = this.routeStream
       .subscribe(nextRoute => {
         const { route: { name: routeName, validate }, routeState } = nextRoute
-        changeRoute({ validate, routeName, routeState })
+        this.changeRoute({ validate, routeName, routeState })
       })
   }
-
-  componentWillUnmount () {
-    this.routeStreamSubscription.dispose()
+  changeRoute = ({ validate, routeName, routeState }) => {
+    return this.store.dispatch(actions.changeRoute({ validate, routeName, routeState }))
   }
-
   render () {
-    const { routePattern, children } = this.props
+    const { routePattern } = this.state
+    const { children } = this.props
     const route = _.chain([children])
       .flatten()
       .find(child => child.props.path === routePattern)
@@ -60,16 +89,10 @@ Router.propTypes = {
     })
     return error
   },
-  changeRoute: PropTypes.func.isRequired,
-  routePattern: PropTypes.string
 }
 
-export default connect((dispatch, getState, ownProps) => {
-  const { route: { routeState: { routePattern } = {} } = {} } = getState()
-  const changeRoute = ({ validate, routeName, routeState }) => dispatch(actions.changeRoute({ validate, routeName, routeState }))
-  return {
-    ...ownProps,
-    changeRoute,
-    routePattern
-  }
-})(Router)
+Router.childContextTypes = {
+  routeStore: PropTypes.object
+}
+
+export default Router

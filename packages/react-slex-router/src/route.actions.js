@@ -9,21 +9,18 @@ class RouteActions {
     }
     return action
   }
-
   pendingRouteReady = () => {
     const action = {
       type: actionTypes.PENDING_ROUTE_READY
     }
     return action
   }
-
   pendingRouteAccessDenied = () => {
     const action = {
       type: actionTypes.PENDING_ROUTE_ACCESS_DENIED
     }
     return action
   }
-
   pendingRouteError = ({ error }) => {
     const action = {
       type: actionTypes.PENDING_ROUTE_ERROR,
@@ -31,7 +28,6 @@ class RouteActions {
     }
     return action
   }
-
   changeRoute = ({ validate, routeName, routeState }) => {
     const action = {
       type: actionTypes.CHANGE_ROUTE,
