@@ -12,20 +12,24 @@ class GridTileLabel extends PureComponent {
   }
   componentDidMount () {
     const { loading } = this.props
-    if (!loading) {
+    this._updateLoading = ({ loading }) => {
       this.setState({
-        loading: false
+        loading
       })
     }
+    if (!loading) {
+      this._updateLoading({ loading: false })
+    }
+  }
+  componentWillUnmount () {
+    this._updateLoading = undefined
   }
   componentWillReceiveProps (nextProps) {
     const { loading } = nextProps
     if (loading !== this.props.loading && loading !== this.loading) {
       this.loading = loading
       setTimeout(() => {
-        this.setState({
-          loading
-        })
+        this._updateLoading && this._updateLoading({ loading })
       }, 400)
     }
   }
