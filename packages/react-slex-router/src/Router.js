@@ -10,7 +10,7 @@ import selectors from './route.selectors'
 export class Router extends PureComponent {
   constructor (props, context) {
     super(props, context)
-    this.store = props.store
+    this.store = props.store || context.store
     this.routes = _.chain([props.children])
       .flatten()
       .map(child => ({
@@ -24,11 +24,6 @@ export class Router extends PureComponent {
       routePattern: _.chain(this.store.getState())
         .get('route.routeState.routePattern')
         .value()
-    }
-  }
-  getChildContext () {
-    return {
-      routeStore: this.store
     }
   }
   componentDidMount () {
@@ -60,8 +55,8 @@ export class Router extends PureComponent {
         this.changeRoute({ validate, routeName, routeState })
       })
   }
-  changeRoute = ({ validate, routeName, routeState }) => {
-    return this.store.dispatch(actions.changeRoute({ validate, routeName, routeState }))
+  changeRoute = ({ routeName, routeState }) => {
+    return this.store.dispatch(actions.changeRoute({ routeName, routeState }))
   }
   render () {
     const { routePattern } = this.state
@@ -77,7 +72,9 @@ export class Router extends PureComponent {
     }
   }
 }
-
+Router.contextTypes = {
+  store: PropTypes.object
+}
 Router.propTypes = {
   children: function (props, propName, componentName) {
     const prop = props[propName]
@@ -89,10 +86,6 @@ Router.propTypes = {
     })
     return error
   },
-}
-
-Router.childContextTypes = {
-  routeStore: PropTypes.object
 }
 
 export default Router

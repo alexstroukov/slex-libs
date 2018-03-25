@@ -5,7 +5,7 @@ import actions from './route.actions'
 class RouteMiddleware {
   changeRouteMiddleware = (dispatch, getState, action) => {
     if (action.type === actionTypes.CHANGE_ROUTE) {
-      const { validate = _.identity(true), routeName, routeState } = action
+      const { validate = () => true, routeName, routeState } = action
       const { route: { routeState: { path: currentPath } = {} } } = getState()
       const isAlreadyTheActiveRoute = this._pathsMatch(currentPath, routeState.path)
       if (!isAlreadyTheActiveRoute) {

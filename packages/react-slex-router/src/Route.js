@@ -17,7 +17,7 @@ class Route extends PureComponent {
 Route.propTypes = {
   path: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  validate: PropTypes.string,
+  validate: PropTypes.func,
   component: PropTypes.func,
   children: PropTypes.object
 }

@@ -10,7 +10,7 @@ function withRouteState (WrappedComponent) {
   class ConnectedRoute extends Component {
     constructor (props, context) {
       super(props, context)
-      this.store = this.props.store || this.context.routeStore
+      this.store = props.store || context.store
       this.state = {
         route: selectors.getRoute(this.store.getState())
       }
@@ -40,10 +40,10 @@ function withRouteState (WrappedComponent) {
     }
   }
   ConnectedRoute.propTypes = {
-    routeStore: PropTypes.object
+    store: PropTypes.object
   }
   ConnectedRoute.contextTypes = {
-    routeStore: PropTypes.object
+    store: PropTypes.object
   }
   return ConnectedRoute
 }
