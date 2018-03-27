@@ -18,7 +18,8 @@ Provider.propTypes = {
   store: PropTypes.shape({
     subscribe: PropTypes.func.isRequired,
     dispatch: PropTypes.func.isRequired,
-    getState: PropTypes.func.isRequired
+    getState: PropTypes.func.isRequired,
+    blacklist: PropTypes.array
   }),
   children: PropTypes.element.isRequired
 }
@@ -27,7 +28,8 @@ Provider.childContextTypes = {
   store: PropTypes.shape({
     subscribe: PropTypes.func.isRequired,
     dispatch: PropTypes.func.isRequired,
-    getState: PropTypes.func.isRequired
+    getState: PropTypes.func.isRequired,
+    blacklist: PropTypes.array
   })
 }
 
