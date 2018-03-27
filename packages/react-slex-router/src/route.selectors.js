@@ -1,6 +1,7 @@
 import * as routeStatuses from './route.statuses'
 import _ from 'lodash'
 
+const defaultRouteState = {}
 class RouteSelectors {
   getLoading = (state) => {
     const {
@@ -13,7 +14,7 @@ class RouteSelectors {
   getRoute = (state) => {
     const {
       route: {
-        routeState = {},
+        routeState = defaultRouteState,
         routeName,
         status
       }
@@ -32,7 +33,7 @@ class RouteSelectors {
   getRouteState = (state) => {
     const {
       route: {
-        routeState = {}
+        routeState = defaultRouteState
       }
     } = state
     return routeState
