@@ -37,7 +37,8 @@
   },
   "dependencies": {
     "lodash": "4.17.2",
-    "slex-router": "0.0.6"
+    "slex-router": "0.0.6",
+    "slex-memoize": "0.1.0"
   },
   "peerDependencies": {
     "react-slex-store": "^0.0.9",

@@ -92,7 +92,7 @@ You can validate access to routes by providing a validate function to `Route`. I
 
 ### Loading data on route change
 
-When routing to a page you often need to load data in stores that are used to display data on the page, this is often done on `componentWillMount`. You can also do it via middleware to decouple this logic from the UI.
+When routing to a page you often need to load data in stores that are used to display data on the page, this is often done on `componentDidMount`. You can also do it via middleware to decouple this logic from the UI.
 
 ```javascript
 import { actionTypes as routeActionTypes } from 'react-slex-router'
