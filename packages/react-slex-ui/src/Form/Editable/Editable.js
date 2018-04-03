@@ -21,7 +21,7 @@ const Editable = WrappedComponent => class EditableWrapper extends Component {
       }
     }
   }
-  componentWillMount () {
+  componentDidMount () {
     this._cancelEdit = submitting => {
       this.setState({ editing: false, submitting })
     }

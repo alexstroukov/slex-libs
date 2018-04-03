@@ -13,7 +13,7 @@ class PageLayout extends PureComponent {
   state = {
     showSidebar: false
   }
-  componentWillMount () {
+  componentDidMount () {
     // Sidebar.initial = false
     this._setShowSidebar = ({ showSidebar }) => this.setState({ showSidebar })
     setTimeout(() => {

@@ -31,7 +31,7 @@ class IndeterminateProgress extends Component {
     }
   }
 
-  componentWillMount () {
+  componentDidMount () {
     this.showState = ({ show }) => {
       this.setState({ show })
     }

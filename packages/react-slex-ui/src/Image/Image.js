@@ -58,7 +58,7 @@ class WrappedImage extends PureComponent {
         this.setState({ loadingPlaceholder: false })
       })
   }
-  componentWillMount () {
+  componentDidMount () {
     if (this.state.src) {
       this.loadImage(this.state.src)
     }
