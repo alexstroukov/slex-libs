@@ -1,4 +1,7 @@
-import { uniqueId, isArray, isObject, isFunction } from 'lodash'
+import uniqueId from 'lodash/uniqueId'
+import isArray from 'lodash/isArray'
+import isObject from 'lodash/isObject'
+import isFunction from 'lodash/isFunction'
 
 class MemoizeCache {
   _map = new Map()
