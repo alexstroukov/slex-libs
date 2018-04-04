@@ -1,4 +1,4 @@
-import { memoize } from 'lodash'
+import memoize from 'lodash/memoize'
 import combineArgsKeys from './combineArgsKeys'
 import MemoizeCache from './MemoizeCache'
 

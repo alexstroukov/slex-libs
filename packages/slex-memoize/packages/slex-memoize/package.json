@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "repository": "https://github.com/alexstroukov/slex-memoize",
   "license": "MIT",
-  "main": "compiled/reactSlexRouter.js",
+  "main": "compiled/slexMemoize.js",
   "standard": {
     "parser": "babel-eslint",
     "plugins": [
