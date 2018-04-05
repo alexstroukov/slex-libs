@@ -1,6 +1,6 @@
 {
   "name": "react-slex-store",
-  "version": "0.0.9",
+  "version": "0.1.0",
   "repository": "https://github.com/alexstroukov/react-slex-store",
   "license": "MIT",
   "main": "compiled/reactSlexStore.js",
