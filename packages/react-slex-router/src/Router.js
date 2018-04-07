@@ -3,8 +3,8 @@ import React, { PureComponent, Children } from 'react'
 import Route from './Route'
 import _ from 'lodash'
 import router from 'slex-router'
-import actions from './route.actions'
 import selectors from './route.selectors'
+import routeChanger from './routeChanger'
 
 export class Router extends PureComponent {
   constructor (props, context) {
@@ -12,6 +12,7 @@ export class Router extends PureComponent {
     this.store = props.store || context.store
     this.routes = _.chain([props.children])
       .flatten()
+      .reject(_.isUndefined)
       .map(child => ({
         path: child.props.path,
         name: child.props.name,
@@ -51,39 +52,8 @@ export class Router extends PureComponent {
     this.routeStreamSubscription = this.routeStream
       .subscribe(nextRoute => {
         const { route: { name: routeName, validate }, routeState } = nextRoute
-        this.changeRoute({ routeName, routeState, validate })
+        routeChanger.changeRoute({ dispatch: this.store.dispatch, getState: this.store.getState, routeName, routeState, validate })
       })
-  }
-  _pathsMatch = (prev, next) => {
-    return prev === next || prev === next + '/'
-  }
-  changeRoute ({ routeName, routeState, validate = () => true}) {
-    this.store.dispatch(actions.changeRoute({ routeName, routeState }))
-    const { route: { routeState: { path: currentPath = '/' } = {} } = {} } = this.store.getState()
-    const isAlreadyTheActiveRoute = this._pathsMatch(currentPath, routeState.path)
-    if (!isAlreadyTheActiveRoute) {
-      this.store.dispatch(actions.routeLoading({ routeName, routeState }))
-      return Promise
-        .resolve(validate({ getState: this.store.getState, routeName, routeState }))
-        .then(routeAllowed => {
-          const { route: { pendingRoute: { routeState: { path: pendingPath } = {} } } } = this.store.getState()
-          const pathIsStillPending = this._pathsMatch(pendingPath, routeState.path)
-          if (pathIsStillPending) {
-            if (routeAllowed) {
-              this.store.dispatch(actions.pendingRouteReady())
-            } else {
-              this.store.dispatch(actions.pendingRouteAccessDenied())
-            }
-          }
-        })
-        .catch(error => {
-          const { route: { pendingRoute: { routeState: { path: pendingPath } = {} } = {} } } = this.store.getState()
-          const pathIsStillPending = this._pathsMatch(pendingPath, routeState.path)
-          if (pathIsStillPending) {
-            this.store.dispatch(actions.pendingRouteError({ error }))
-          }
-        })
-    }
   }
   render () {
     const { routePattern } = this.state

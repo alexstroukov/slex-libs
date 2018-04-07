@@ -54,20 +54,4 @@ describe('route.actions', function () {
       expect(routeLoadingAction.error).to.equal(params.error)
     })
   })
-
-  describe('changeRoute', function () {
-    const params = { routeName: 'testRouteName', routeState: { path: 'testRoutePath' } }
-    it('should create an object action', function () {
-      const changeRouteAction = routeActions.changeRoute(params)
-      expect(changeRouteAction !== null && typeof changeRouteAction === 'object').to.equal(true)
-    })
-    it('should include the given routeName in the returned object', function () {
-      const changeRouteAction = routeActions.changeRoute(params)
-      expect(changeRouteAction.routeName).to.equal(params.routeName)
-    })
-    it('should include the given routeState in the returned object', function () {
-      const changeRouteAction = routeActions.changeRoute(params)
-      expect(changeRouteAction.routeState).to.equal(params.routeState)
-    })
-  })
 })

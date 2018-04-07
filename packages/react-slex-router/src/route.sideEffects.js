@@ -8,7 +8,6 @@ import routeSubscribers from './routeSubscribers'
 class RouteSideEffects {
   notifyRouteSubscribersOnRouteChangeSideEffect = ({ prevState, nextState, action, dispatch }) => {
     if (
-      action.type === actionTypes.CHANGE_ROUTE ||
       action.type === actionTypes.PENDING_ROUTE_ACCESS_DENIED ||
       action.type === actionTypes.PENDING_ROUTE_ERROR ||
       action.type === actionTypes.PENDING_ROUTE_READY ||

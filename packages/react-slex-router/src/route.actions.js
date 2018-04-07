@@ -28,14 +28,6 @@ class RouteActions {
     }
     return action
   }
-  changeRoute = ({ routeName, routeState }) => {
-    const action = {
-      type: actionTypes.CHANGE_ROUTE,
-      routeName,
-      routeState
-    }
-    return action
-  }
 }
 
 export default new RouteActions()
