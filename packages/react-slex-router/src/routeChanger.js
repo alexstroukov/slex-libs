@@ -14,7 +14,6 @@ class RouteChanger {
       return Promise
         .resolve(validate({ getState: getState, routeName, routeState }))
         .then(routeAllowed => {
-          debugger
           const { route: { pendingRoute: { routeState: { path: pendingPath } = {} } } } = getState()
           const pathIsStillPending = this._pathsMatch(pendingPath, routeState.path)
           if (pathIsStillPending) {
@@ -30,11 +29,10 @@ class RouteChanger {
           const pathIsStillPending = this._pathsMatch(pendingPath, routeState.path)
           if (pathIsStillPending) {
             dispatch(actions.pendingRouteError({ error: error.message }))
-            return Promise.reject(error)
           }
         })
     } else {
-      return Promise.reject(new Error('route is already active'))
+      return Promise.resolve()
     }
   }
 }

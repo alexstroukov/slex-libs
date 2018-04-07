@@ -212,10 +212,6 @@ describe('routeChanger', function () {
           return routeChanger
             .changeRoute(params)
             .then(() => {
-              throw new Error('should have rejected')
-            })
-            .catch((error) => {
-              expect(error.message).to.not.equal('should have rejected')
               expect(validatorStub.callCount).to.equal(1)
               expect(dispatchStub.callCount).to.equal(2)
               expect(pendingRouteErrorStub.callCount).to.equal(1)
