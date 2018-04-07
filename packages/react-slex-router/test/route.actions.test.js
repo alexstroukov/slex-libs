@@ -56,7 +56,7 @@ describe('route.actions', function () {
   })
 
   describe('changeRoute', function () {
-    const params = { validate: 'testValidate', routeName: 'testRouteName', routeState: { path: 'testRoutePath' } }
+    const params = { routeName: 'testRouteName', routeState: { path: 'testRoutePath' } }
     it('should create an object action', function () {
       const changeRouteAction = routeActions.changeRoute(params)
       expect(changeRouteAction !== null && typeof changeRouteAction === 'object').to.equal(true)
@@ -68,10 +68,6 @@ describe('route.actions', function () {
     it('should include the given routeState in the returned object', function () {
       const changeRouteAction = routeActions.changeRoute(params)
       expect(changeRouteAction.routeState).to.equal(params.routeState)
-    })
-    it('should include the given validate key in the returned object', function () {
-      const changeRouteAction = routeActions.changeRoute(params)
-      expect(changeRouteAction.validate).to.equal(params.validate)
     })
   })
 })

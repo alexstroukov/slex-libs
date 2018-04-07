@@ -28,10 +28,9 @@ class RouteActions {
     }
     return action
   }
-  changeRoute = ({ validate, routeName, routeState }) => {
+  changeRoute = ({ routeName, routeState }) => {
     const action = {
       type: actionTypes.CHANGE_ROUTE,
-      validate,
       routeName,
       routeState
     }
