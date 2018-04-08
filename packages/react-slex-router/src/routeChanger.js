@@ -7,7 +7,7 @@ class RouteChanger {
     return prev === next || prev === next + '/'
   }
   changeRoute = ({ getState, dispatch, routeName, routeState, validate = () => true }) => {
-    const { route: { routeState: { path: currentPath = '/' } = {} } = {} } = getState()
+    const { route: { routeState: { path: currentPath } = {} } = {} } = getState()
     const isAlreadyTheActiveRoute = this._pathsMatch(currentPath, routeState.path)
     if (!isAlreadyTheActiveRoute) {
       dispatch(actions.routeLoading({ routeName, routeState }))
