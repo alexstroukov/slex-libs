@@ -9,7 +9,6 @@ import sideEffects from './route.sideEffects'
 import reducers from './route.reducers'
 import replace from './replace'
 import push from './push'
-import withRouteState from './withRouteState'
 
 const initialState = {
   status: statuses.INITIAL,
@@ -20,7 +19,7 @@ const initialState = {
   error: undefined
 }
 
-export { Router, Route, actionTypes, statuses, actions, sideEffects, selectors, withRouteState, replace, push }
+export { Router, Route, actionTypes, statuses, actions, sideEffects, selectors, replace, push }
 export default function reduceRoute (state = initialState, action) {
   switch (action.type) {
     case actionTypes.ROUTE_LOADING:

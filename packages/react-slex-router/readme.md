@@ -114,9 +114,9 @@ When access to a route is denied it is good practice to redirect a user either t
 ```javascript
 import { replace, actionTypes as routeActionTypes } from 'react-slex-router'
 
-redirectOnAccessDeniedMiddleware (dispatch, getState, action) {
+const redirectOnAccessDenied = ({ dispatch, prevState, nextState, action }) => {
   const { type: actionType } = action
-  const { route: { routeState: { path: currentPath } } = {} } = getState()
+  const { route: { routeState: { path: currentPath } } = {} } = prevState
   if (actionType === routeActionTypes.PENDING_ROUTE_ACCESS_DENIED) {
     const isLoggedIn = true
     if (isLoggedIn) {

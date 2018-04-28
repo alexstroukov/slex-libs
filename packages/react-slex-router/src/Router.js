@@ -4,7 +4,7 @@ import Route from './Route'
 import _ from 'lodash'
 import router from 'slex-router'
 import selectors from './route.selectors'
-import routeChanger from './routeChanger'
+import actions from './route.actions'
 
 export class Router extends PureComponent {
   constructor (props, context) {
@@ -52,7 +52,7 @@ export class Router extends PureComponent {
     this.routeStreamSubscription = this.routeStream
       .subscribe(nextRoute => {
         const { route: { name: routeName, validate }, routeState } = nextRoute
-        routeChanger.changeRoute({ dispatch: this.store.dispatch, getState: this.store.getState, routeName, routeState, validate })
+        this.store.dispatch(actions.changeRoute({ routeName, routeState, validate }))
       })
   }
   render () {

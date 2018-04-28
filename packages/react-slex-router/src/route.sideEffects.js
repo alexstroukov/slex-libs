@@ -6,20 +6,47 @@ import selectors from './route.selectors'
 import routeSubscribers from './routeSubscribers'
 
 class RouteSideEffects {
-  notifyRouteSubscribersOnRouteChangeSideEffect = ({ prevState, nextState, action, dispatch }) => {
-    if (
-      action.type === actionTypes.PENDING_ROUTE_ACCESS_DENIED ||
-      action.type === actionTypes.PENDING_ROUTE_ERROR ||
-      action.type === actionTypes.PENDING_ROUTE_READY ||
-      action.type === actionTypes.ROUTE_LOADING
-    ) {
-      const route = selectors.getRoute(nextState)
-      routeSubscribers.notifySubscribers('route', subscriber => {
-        subscriber({ route })
-      })
+  _pathsMatch = (prev, next) => {
+    return prev === next || prev === next + '/'
+  }
+  _defaultValidate = () => true
+  validateRouteOnChangeRoute = ({ validators = {} }) => {
+    return ({ dispatch, getState, prevState, nextState, action }) => {
+      if (action.type === actionTypes.CHANGE_ROUTE) {
+        const { route: { routeState: { path: currentPath } = {} } = {} } = prevState
+        const { routeName, routeState, validate } = action
+        const isAlreadyTheActiveRoute = this._pathsMatch(currentPath, routeState.path)
+        if (!isAlreadyTheActiveRoute) {
+          dispatch(actions.routeLoading({ routeName, routeState }))
+          const validator = validators[validate] || this._defaultValidate
+          debugger
+          return Promise
+            .resolve(validator({ state: prevState, routeName, routeState }))
+            .then(routeAllowed => {
+              debugger
+              const { route: { pendingRoute: { routeState: { path: pendingPath } = {} } } } = getState()
+              const pathIsStillPending = this._pathsMatch(pendingPath, routeState.path)
+              if (pathIsStillPending) {
+                if (routeAllowed) {
+                  dispatch(actions.pendingRouteReady())
+                } else {
+                  dispatch(actions.pendingRouteAccessDenied())
+                }
+              }
+            })
+            .catch(error => {
+              const { route: { pendingRoute: { routeState: { path: pendingPath } = {} } = {} } } = getState()
+              const pathIsStillPending = this._pathsMatch(pendingPath, routeState.path)
+              if (pathIsStillPending) {
+                dispatch(actions.pendingRouteError({ error: error.message }))
+              }
+            })
+        } else {
+          return Promise.resolve()
+        }
+      }
     }
   }
-
 }
 
 export default new RouteSideEffects()
