@@ -18,12 +18,16 @@ const initialState = {
   pendingRoute: undefined,
   error: undefined
 }
-
-export { Router, Route, actionTypes, statuses, actions, sideEffects, selectors, replace, push }
-export default function reduceRoute (state = initialState, action) {
+function reduceRouteClient (state = initialState, action) {
   switch (action.type) {
     case actionTypes.ROUTE_LOADING:
       return reducers.routeLoading(state, action)
+    default:
+      return state
+  }
+}
+function reduceRouteWorker (state = initialState, action) {
+  switch (action.type) {
     case actionTypes.PENDING_ROUTE_READY:
       return reducers.pendingRouteReady(state, action)
     case actionTypes.PENDING_ROUTE_ACCESS_DENIED:
@@ -34,3 +38,5 @@ export default function reduceRoute (state = initialState, action) {
       return state
   }
 }
+
+export { reduceRouteClient, reduceRouteWorker, Router, Route, actionTypes, statuses, actions, sideEffects, selectors, replace, push }
