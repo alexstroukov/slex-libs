@@ -19,11 +19,9 @@ class RouteSideEffects {
         if (!isAlreadyTheActiveRoute) {
           dispatch(actions.routeLoading({ routeName, routeState }))
           const validator = validators[validate] || this._defaultValidate
-          debugger
           return Promise
             .resolve(validator({ state: prevState, routeName, routeState }))
             .then(routeAllowed => {
-              debugger
               const { route: { pendingRoute: { routeState: { path: pendingPath } = {} } } } = getState()
               const pathIsStillPending = this._pathsMatch(pendingPath, routeState.path)
               if (pathIsStillPending) {
