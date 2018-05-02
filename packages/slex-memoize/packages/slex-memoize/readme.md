@@ -6,7 +6,7 @@
 $ npm install slex-memoize
 ```
 
-`slex-memoize` is a memoize function which supports multiple arguments.
+`slex-memoize` is a memoize function which supports multi argument functions.
 
 ## Usage
 
@@ -22,8 +22,8 @@ const memoized = memoize((arg1, arg2, arg3) => {
   // do something
 })
 
-const result1 = memoize(arg1, arg2, arg3)
-const result2 = memoize(arg1, arg2, arg3)
+const result1 = memoized(arg1, arg2, arg3)
+const result2 = memoized(arg1, arg2, arg3)
 
 console.info(result1 === result2) // true
 ```
@@ -41,8 +41,8 @@ const memoized = memoize(({ arg1, arg2, arg3 }) => {
   // do something
 })
 
-const result1 = memoize({ arg1, arg2, arg3 })
-const result2 = memoize({ arg1, arg2, arg3 })
+const result1 = memoized({ arg1, arg2, arg3 })
+const result2 = memoized({ arg1, arg2, arg3 })
 
 console.info(result1 === result2) // true
 ```
