@@ -38,7 +38,6 @@ class HeaderButtonLabel extends PureComponent {
           classes.container,
           className
         )}
-        {...rest}
       >
         <div
           className={classNames(classes.textContainer, {

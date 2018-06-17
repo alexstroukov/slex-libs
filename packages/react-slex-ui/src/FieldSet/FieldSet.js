@@ -17,17 +17,16 @@ const formLabelStyle = {
 const childrenContainerStyle = {
   marginTop: '16px'
 }
-const loaderStyle = { marginTop: -1 }
 const hideStyle = { opacity: 0 }
 const showStyle = { opacity: 1 }
 
 class FieldSet extends PureComponent {
   render () {
-    const { classes, children, message, label, loading = false } = this.props
-    const formHelperTextStyle = message == null ? hideStyle : showStyle
+    const { classes, children, error, label } = this.props
+    const formHelperTextStyle = !error ? hideStyle : showStyle
     return (
       <FormControl
-        error={!!message}
+        error={!!error}
         style={formControlStyle}
       >
         <FormLabel
@@ -41,13 +40,12 @@ class FieldSet extends PureComponent {
         >
           {children}
         </div>
-        <IndeterminateProgress size={2} style={loaderStyle} show={loading} />
         <FormHelperText
           id='input-text'
           className={classes.message}
           style={formHelperTextStyle}
         >
-          {message}
+          {error}
         </FormHelperText>
       </FormControl>
     )
@@ -58,7 +56,6 @@ class FieldSet extends PureComponent {
 //   <div className={classes.field}>
 //     {children}
 //   </div>
-//   <IndeterminateProgress size={2} style={{ marginTop: -1 }} show={loading} />
 //   <div className={classes.message} style={{ opacity: message == null ? 0 : 1 }}>
 //     {message}
 //   </div>

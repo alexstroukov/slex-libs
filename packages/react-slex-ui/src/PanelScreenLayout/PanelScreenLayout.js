@@ -47,10 +47,7 @@ class PanelScreenLayout extends PureComponent {
             return (
               <div
                 className={classNames(
-                  classes.sidebarContent,
-                  {
-                    [classes.sidebarContentOpen]: !!sidebarContent
-                  }
+                  classes.sidebarContent
                 )}
                 style={interpolatingStyle}
               >

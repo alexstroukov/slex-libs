@@ -6,9 +6,9 @@ import classNames from 'classnames'
 
 class HeaderButtonLabelLoadingPlaceholder extends PureComponent {
   render () {
-    const { classes, className, dashed, ...rest } = this.props
+    const { classes, className, dashed } = this.props
     return (
-      <div className={classNames(classes.container, className)} {...rest}>
+      <div className={classNames(classes.container, className)}>
         {dashed && <div className={classes.dashed} />}
       </div>
     )

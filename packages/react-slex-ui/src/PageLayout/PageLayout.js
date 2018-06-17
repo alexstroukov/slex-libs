@@ -14,7 +14,6 @@ class PageLayout extends PureComponent {
     showSidebar: false
   }
   componentDidMount () {
-    // Sidebar.initial = false
     this._setShowSidebar = ({ showSidebar }) => this.setState({ showSidebar })
     setTimeout(() => {
       requestAnimationFrame(() => {
@@ -62,13 +61,7 @@ class PageLayout extends PureComponent {
                 return (
                   <div
                     style={{ ...visiblityStyle, ...fullScreenStyle }}
-                    className={classNames(
-                      classes.sidebarContainer,
-                      {
-                        [classes.sidebarContainerBackground]: sidebarContent && this.state.showSidebar,
-                        [classes.backgroundColorTransition]: sidebarContent && this.state.showSidebar
-                      }
-                    )}
+                    className={classes.sidebarContainer}
                   >
                     <div
                       className={classes.sidebarContent}

@@ -9,9 +9,6 @@ const styles = theme => {
     menu: {
       paddingTop: 60,
       flex: 1
-    },
-    background: {
-      backgroundColor: '#ffeede'
     }
   }
 }

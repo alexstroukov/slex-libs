@@ -4,8 +4,7 @@ const styles = theme => {
     container: {
       height: '100%',
       display: 'block',
-      position: 'relative',
-      transition: 'background-color 0.2s ease-in-out'
+      position: 'relative'
     },
     containerFullHeight: {
       minHeight: fullHeight
@@ -27,12 +26,6 @@ const styles = theme => {
       width: theme.slexUi.sidebar.width,
       height: '100%',
       position: 'absolute'
-    },
-    sidebarContainerBackground: {
-      backgroundColor: '#ffeede'
-    },
-    backgroundColorTransition: {
-      transition: 'background-color 0.6s ease-in-out'
     },
     horizontalContainer: {
       display: 'flex',

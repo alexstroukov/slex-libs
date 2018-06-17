@@ -21,11 +21,7 @@ const styles = theme => {
       flexDirection: 'row',
       width: '100%'
     },
-    sidebarContentOpen: {
-      backgroundColor: '#ffeede'
-    },
     sidebarContent: {
-      transition: 'background-color 200ms ease-in-out',
       position: 'absolute',
       top: 0,
       right: 0,

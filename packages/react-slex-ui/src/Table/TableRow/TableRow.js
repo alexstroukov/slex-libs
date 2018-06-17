@@ -7,9 +7,13 @@ import styles from './styles'
 
 class WrappedTableRow extends PureComponent {
   render () {
-    const { classes, children, className, ...rest } = this.props
+    const { classes, children, className, onClick } = this.props
     return (
-      <TableRow component={'li'} className={classNames(classes.container, className)} {...rest}>
+      <TableRow
+        component={'li'}
+        className={classNames(classes.container, className)}
+        onClick={onClick}
+      >
         {children}
       </TableRow>
     )
@@ -17,7 +21,6 @@ class WrappedTableRow extends PureComponent {
 }
 
 WrappedTableRow.propTypes = {
-  show: PropTypes.bool
 }
 
 export default withStyles(styles)(WrappedTableRow)

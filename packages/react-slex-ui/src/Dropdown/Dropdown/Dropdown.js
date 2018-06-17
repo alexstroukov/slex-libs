@@ -27,9 +27,9 @@ class Dropdown extends Component {
   }
 
   handleChange = option => {
-    const { changeValue } = this.props
+    const { onChange } = this.props
     this.handleRequestClose()
-    changeValue(option)
+    onChange(option)
   }
 
   renderOption = (option, index) => {
@@ -128,7 +128,7 @@ Dropdown.propTypes = {
   optionValueFormatter: PropTypes.func,
   options: PropTypes.array,
   hasMore: PropTypes.bool,
-  changeValue: PropTypes.func,
+  onChange: PropTypes.func,
   readOnly: PropTypes.bool,
   disableUnderline: PropTypes.bool,
   loadData: PropTypes.func,
