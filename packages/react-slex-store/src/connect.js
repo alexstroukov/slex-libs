@@ -11,8 +11,7 @@ function connect (fn) {
       }
       componentDidMount () {
         this.unsubscribe = this.store.subscribe((state, action) => {
-          const blacklist = this.store.blacklist || []
-          if (action && !blacklist.includes(action.type)) {
+          if (action) {
             this.hasStoreStateChanged = true
             this.forceUpdate()
           }
@@ -49,16 +48,14 @@ function connect (fn) {
       store: PropTypes.shape({
         subscribe: PropTypes.func.isRequired,
         dispatch: PropTypes.func.isRequired,
-        getState: PropTypes.func.isRequired,
-        blacklist: PropTypes.array
+        getState: PropTypes.func.isRequired
       })
     }
     Connected.contextTypes = {
       store: PropTypes.shape({
         subscribe: PropTypes.func.isRequired,
         dispatch: PropTypes.func.isRequired,
-        getState: PropTypes.func.isRequired,
-        blacklist: PropTypes.array
+        getState: PropTypes.func.isRequired
       })
     }
     return Connected
