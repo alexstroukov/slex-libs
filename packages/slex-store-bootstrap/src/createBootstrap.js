@@ -11,7 +11,10 @@ const tryCompleteBootstrap = ({ dispatch, pendingBootstraps, executingBootstraps
 }
 const applyBootstrap = ({ pendingBootstraps, executingBootstraps, bootstrapName, bootstrap, dispatch, getState }) => {
   executingBootstraps.push(bootstrapName)
-  return bootstrap({ dispatch, getState })
+  return Promise.resolve()
+    .then(() => {
+      return bootstrap({ dispatch, getState })
+    })
     .then(() => {
       debugger
       pendingBootstraps.splice(pendingBootstraps.indexOf(bootstrapName), 1)

@@ -1,75 +1,35 @@
-[![CircleCI](https://circleci.com/gh/alexstroukov/slex-store/tree/master.svg?style=svg)](https://circleci.com/gh/alexstroukov/slex-store/tree/master)
-# Slex Store
+[![CircleCI](https://circleci.com/gh/alexstroukov/slex-store-bootstrap.svg?style=svg)](https://circleci.com/gh/alexstroukov/slex-store-bootstrap)
+# Slex Store Bootstrap
 
 ```
-$ npm install slex-store
+$ npm install slex-store-bootstrap
 ```
 
-`slex-store` is a uni directional, predictable state container inspired by the ideas of [`flux`](https://facebook.github.io/flux/docs/in-depth-overview.html#content) and [`redux`](http://redux.js.org/docs/introduction/).
-
-
-## Pipeline 
-
-The uni directional flow refers to the action pipeline. The pipeline runs in the following sequence and is made up of:
-
-`ACTION` - actions are dispatched (`dispatch(action)`) using the dispatcher.
-
-```javascript
-const action = {
-  type: 'ACTION_NAME',
-  ...
-}
-```
-
-&darr;
-
-`REDUCER` - actions are then given to a reducer along with the current state of the store. The next state of the store is returned. Immutability is assumed. 
-
-```javascript
-  const reducer = (state, action) => {
-    return {
-      ...state,
-      ...
-    }
-  }
-```
-
-&darr;
-
-`SIDEEFFECT` - Side effects are triggered after the action has been reduced into the state. Side effects are aware of the state before and after an action was reduced into the state.
-
-```javascript
-  const sideEffect = ({ prevState, nextState, action, dispatch, getState }) => {
-    if (action.type === 'ACTION_NAME') {
-      ...
-    }
-  }
-```
-
-&darr;
-
-`STATE` - Finally, subscribers are notified.
+`slex-store-bootstrap` Is a set of slex-store bindings to delay rendering app until after bootstrapping is complete.
 
 ## Example Usage
 
 ```javascript
-import slexStoreBootstrap from 'slex-store-bootstrap'
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { createStore } from 'slex-store'
+import { createBootstrap, createDeferredRenderApp } from 'slex-store-bootstrap'
 
-const createDispatch = slexStore.compose(
-  slexStore.createDispatch
-)
-const createStore = () => slexStore.createStore(
-  createDispatch({
+const bootstrap = createBootstrap({
+  restoreLogin: ({ dispatch, getState }) => {...}
+})
+const store = slexStore.createStore(
+  slexStore.createDispatch({
     reducer: slexStore.createReducer({
-      store: reducer
-    }),
-    sideEffects: [...]
+      bootstrap: bootstrapReducer
+    })
   })
 )
-const store = createStore()
-
-store.subscribe((state) => {
-  // rerender your app e.g. ReactDOM.render()
+const renderApp = createDeferredRenderApp((store) => {
+  ReactDOM.render(<App />, document.getElementById('app'))
 })
+
+bootstrap(store)
+renderApp(store)
 
 ```
