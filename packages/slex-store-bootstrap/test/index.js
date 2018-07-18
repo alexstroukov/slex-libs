@@ -1,1 +1,5 @@
-import './slexStore.test'
+import './bootstrap.actions.test'
+import './bootstrap.reducers.test'
+import './bootstrap.selectors.test'
+import './createBootstrap.test'
+import './createDeferredRenderApp.test'

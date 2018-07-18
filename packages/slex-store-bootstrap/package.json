@@ -35,9 +35,6 @@
     "deep-clean": "rm -rf node_modules && npm run clean",
     "prepublishOnly": "rm -rf compiled && webpack --config webpack/src.webpack.config.js"
   },
-  "dependencies": {
-    "lodash": "4.17.2"
-  },
   "devDependencies": {
     "babel": "6.23.0",
     "babel-cli": "6.26.0",
