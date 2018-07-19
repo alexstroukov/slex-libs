@@ -27,7 +27,7 @@ describe('Route', function () {
 
   it('should be able to render content as child element', function () {
     const wrapper = mount(
-      <Route path={'path'} name={'name'} validate={() => {}}>
+      <Route path={'path'} name={'name'} validate={'validate'}>
         <MyRoute />
       </Route>
     )
@@ -36,7 +36,7 @@ describe('Route', function () {
   })
   it('should be able to render content as component prop', function () {
     const wrapper = mount(
-      <Route path={'path'} name={'name'} validate={() => {}} component={MyRoute} />
+      <Route path={'path'} name={'name'} validate={'validate'} component={MyRoute} />
     )
     const myRoute = wrapper.find('MyRoute')
     expect(myRoute).to.have.length(1)

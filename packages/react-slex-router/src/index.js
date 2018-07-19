@@ -18,12 +18,15 @@ const initialState = {
   pendingRoute: undefined,
   error: undefined
 }
-function reduceRouteClient (state = initialState, action) {
+const enhanceClientReducerWithRouter = (reducer) => (state, action) => {
   switch (action.type) {
     case actionTypes.ROUTE_LOADING:
-      return reducers.routeLoading(state, action)
+      return {
+        ...state,
+        route: reducers.routeLoading(state.route, action)
+      }
     default:
-      return state
+      return reducer(state, action)
   }
 }
 function reduceRouteWorker (state = initialState, action) {
@@ -39,4 +42,4 @@ function reduceRouteWorker (state = initialState, action) {
   }
 }
 
-export { reduceRouteClient, reduceRouteWorker, Router, Route, actionTypes, statuses, actions, sideEffects, selectors, replace, push }
+export { enhanceClientReducerWithRouter, reduceRouteWorker, Router, Route, actionTypes, statuses, actions, sideEffects, selectors, replace, push }
