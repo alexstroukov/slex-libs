@@ -6,7 +6,7 @@ class BootstrapSlectors {
       bootstrap: {
         status
       } = {}
-    } = state
+    } = state || {}
     return status === statuses.READY
   }
   getError = (state) => {
@@ -14,7 +14,7 @@ class BootstrapSlectors {
       bootstrap: {
         status
       } = {}
-    } = state
+    } = state || {}
     return status === statuses.ERROR
   }
 }

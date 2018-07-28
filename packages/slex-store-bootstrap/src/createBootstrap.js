@@ -13,13 +13,11 @@ const applyBootstrap = ({ pendingBootstraps, executingBootstraps, bootstrapName,
   executingBootstraps.push(bootstrapName)
   return bootstrap({ dispatch, getState })
     .then(() => {
-      debugger
       pendingBootstraps.splice(pendingBootstraps.indexOf(bootstrapName), 1)
       executingBootstraps.splice(executingBootstraps.indexOf(bootstrapName), 1)
       tryCompleteBootstrap({ dispatch, pendingBootstraps, executingBootstraps })
     })
     .catch((error) => {
-      debugger
       executingBootstraps.splice(executingBootstraps.indexOf(bootstrapName), 1)
       tryCompleteBootstrap({ dispatch, pendingBootstraps, executingBootstraps })
       throw error
@@ -29,7 +27,6 @@ const applyBootstraps = ({ pendingBootstraps, executingBootstraps, bootstraps, d
   for (const bootstrapName in bootstraps) {
     pendingBootstraps.push(bootstrapName)
     const bootstrap = bootstraps[bootstrapName]
-    debugger
     applyBootstrap({ pendingBootstraps, executingBootstraps, bootstrapName, bootstrap, dispatch, getState })
   }
 }
