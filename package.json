@@ -5,7 +5,6 @@
   "main": "index.js",
   "scripts": {
     "test": "test",
-    "lerna": "lerna",
     "prepublish": "rm -rf .gitignore && cp .gitignore.pre .gitignore",
     "postpublish": "rm -rf .gitignore && cp .gitignore.post .gitignore",
     "publish": "lerna publish"
