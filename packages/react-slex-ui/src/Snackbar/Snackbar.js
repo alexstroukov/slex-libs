@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react'
 import Snackbar from 'material-ui/Snackbar'
+import Button from 'material-ui/Button'
 import snackbarService from './snackbarService'
 
 class WrappedSnackbar extends PureComponent {
@@ -31,6 +32,11 @@ class WrappedSnackbar extends PureComponent {
           'aria-describedby': 'message-id'
         }}
         message={<span id='message-id'>{this.state.error}</span>}
+        action={[
+          <Button key={'close'} color={'primary'} size={'small'} onClick={this.close}>
+            close
+          </Button>
+        ]}
       />
     )
   }

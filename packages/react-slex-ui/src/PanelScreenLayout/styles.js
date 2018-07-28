@@ -1,8 +1,7 @@
 const styles = theme => {
   return {
     container: {
-      height: '100%',
-      padding: `0 ${theme.slexUi.sidebar.width}px 0 ${theme.slexUi.sidebar.width}px`,
+      padding: `0 ${theme.slexUi.sidebar.width}px 80px ${theme.slexUi.sidebar.width}px`,
       display: 'flex',
       flexDirection: 'row'
     },

@@ -24,7 +24,7 @@ const styles = theme => {
       top: '0',
       left: '0',
       width: theme.slexUi.sidebar.width,
-      height: '100%',
+      minHeight: fullHeight - 60,
       position: 'absolute'
     },
     horizontalContainer: {
@@ -34,13 +34,12 @@ const styles = theme => {
     },
     verticalContainer: {
       flex: 1,
-      height: '100%',
+      minHeight: fullHeight - 60,
       display: 'block',
       position: 'relative'
     },
     pageContainer: {
-      width: '100%',
-      marginBottom: '80px'
+      width: '100%'
     },
     routeProgressVertical: {
       position: 'fixed',
