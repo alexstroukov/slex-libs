@@ -1,0 +1,27 @@
+{
+  "name": "slex-libs",
+  "version": "1.0.0",
+  "description": "A lerna release environment for slex libraries",
+  "main": "index.js",
+  "scripts": {
+    "test": "test",
+    "lerna": "lerna",
+    "publish": "lerna publish"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexstroukov/slex-libs.git"
+  },
+  "keywords": [
+    "slex-libs"
+  ],
+  "author": "alexstroukov",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/alexstroukov/slex-libs/issues"
+  },
+  "homepage": "https://github.com/alexstroukov/slex-libs#readme",
+  "dependencies": {
+    "lerna": "^3.0.0-rc.0"
+  }
+}
