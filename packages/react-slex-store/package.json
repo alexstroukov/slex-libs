@@ -37,10 +37,10 @@
   },
   "peerDependencies": {
     "react": "^16.0.0",
-    "slex-store": "^0.1.0"
+    "slex-store": "^1.0.0"
   },
   "devDependencies": {
-    "slex-store": "^0.1.0",
+    "slex-store": "^1.0.0",
     "react": "16.0.0",
     "react-dom": "16.0.0",
     "react-test-renderer": "16.0.0",
