@@ -35,6 +35,9 @@
     "deep-clean": "rm -rf node_modules && npm run clean",
     "prepublishOnly": "rm -rf compiled && webpack --config webpack/src.webpack.config.js"
   },
+  "peerDependencies": {
+    "slex-store": "^1.0.0"
+  },
   "devDependencies": {
     "babel": "6.23.0",
     "babel-cli": "6.26.0",
