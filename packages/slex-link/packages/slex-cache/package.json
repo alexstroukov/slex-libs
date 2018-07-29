@@ -1,6 +1,6 @@
 {
   "name": "slex-cache",
-  "version": "1.10.6",
+  "version": "1.10.10",
   "repository": "https://github.com/alexstroukov/slex-utils/tree/master/packages/slex-cache",
   "license": "MIT",
   "main": "compiled/slexCache.js",
