@@ -2,7 +2,7 @@ const path = require('path')
 
 const config = {
   entry: {
-    cache: '../src/index'
+    slexCache: '../src/index'
   },
   devtool: 'source-map',
   context: __dirname,
@@ -14,7 +14,7 @@ const config = {
 
   output: {
     path: path.resolve(__dirname, '../compiled'),
-    filename: 'slexMemoize.js',
+    filename: '[name].js',
     libraryTarget: 'umd',
     pathinfo: true,
     sourceMapFilename: '[file].map',
