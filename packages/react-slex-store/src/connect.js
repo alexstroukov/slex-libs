@@ -13,6 +13,7 @@ function connect (fn) {
         this.unsubscribe = this.store.subscribe((state, action) => {
           if (action) {
             this.hasStoreStateChanged = true
+            this.hasConnected = true
             this.forceUpdate()
           }
         })
@@ -28,19 +29,23 @@ function connect (fn) {
         return this.hasStoreStateChanged || this.hasPropsStateChanged
       }
       render () {
-        const mergedProps = fn(this.store.dispatch, this.store.getState, this.props)
-        if (
-          this._element && 
-          this._prevMergedProps && 
-          shallowEquals(this._prevMergedProps, mergedProps)
-        ) {
-          return this._element
+        if (!this.hasConnected) {
+          return null
         } else {
-          this._prevMergedProps = mergedProps
-          this.hasStoreStateChanged = false
-          this.hasPropsStateChanged = false
-          this._element = <WrappedComponent {...mergedProps} />
-          return this._element
+          const mergedProps = fn(this.store.dispatch, this.store.getState, this.props)
+          if (
+            this._element && 
+            this._prevMergedProps && 
+            shallowEquals(this._prevMergedProps, mergedProps)
+          ) {
+            return this._element
+          } else {
+            this._prevMergedProps = mergedProps
+            this.hasStoreStateChanged = false
+            this.hasPropsStateChanged = false
+            this._element = <WrappedComponent {...mergedProps} />
+            return this._element
+          }
         }
       }
     }

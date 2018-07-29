@@ -15,11 +15,9 @@ describe('reactSlexStore', function () {
   beforeEach(function () {
     sandbox.restore()
   })
-
   afterEach(function () {
     sandbox.restore()
   })
-
   describe('Provider', function () {
     it('should provide connect with dispatch', function () {
       const initialState = {

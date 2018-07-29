@@ -38,13 +38,13 @@ describe('reactSlexStore', function () {
           dispatch
         }
       })
-      const MyComponent = props => null
+      const MyComponent = sandbox.spy(props => null)
       const MyConnectedComponent = connect(connectSpy)(MyComponent)
-      const wrapper = mount(<MyConnectedComponent store={store} />)
-      const renderedMyComponent = wrapper.find(MyComponent)
+      mount(<MyConnectedComponent store={store} />)
       expect(connectSpy.calledOnce).to.be.true
       expect(connectSpy.firstCall.args[0]).to.equal(store.dispatch)
-      expect(renderedMyComponent.getElement().props.dispatch).to.equal(store.dispatch)
+      expect(MyComponent.calledOnce).to.be.true
+      expect(MyComponent.firstCall.args[0].dispatch).to.equal(store.dispatch)
     })
     it('should connect component with getState functionality', function () {
       const initialState = {
@@ -64,13 +64,13 @@ describe('reactSlexStore', function () {
           getState
         }
       })
-      const MyComponent = props => null
+      const MyComponent = sandbox.spy(props => null)
       const MyConnectedComponent = connect(connectSpy)(MyComponent)
-      const wrapper = mount(<MyConnectedComponent store={store} />)
-      const renderedMyComponent = wrapper.find(MyComponent)
+      mount(<MyConnectedComponent store={store} />)
       expect(connectSpy.calledOnce).to.be.true
       expect(connectSpy.firstCall.args[1]).to.equal(store.getState)
-      expect(renderedMyComponent.getElement().props.getState).to.equal(store.getState)
+      expect(MyComponent.calledOnce).to.be.true
+      expect(MyComponent.firstCall.args[0].getState).to.equal(store.getState)
     })
     it('should connect component with its own props', function () {
       const ownProp = 'ownProp'
@@ -88,14 +88,13 @@ describe('reactSlexStore', function () {
       const connectSpy = sandbox.spy((dispatch, getState, ownProps) => {
         return ownProps
       })
-      const MyComponent = props => null
+      const MyComponent = sandbox.spy(props => null)
       const MyConnectedComponent = connect(connectSpy)(MyComponent)
-      const wrapper = mount(<MyConnectedComponent ownProp={ownProp} store={store} />)
-      const renderedMyComponent = wrapper.find(MyComponent)
-
+      mount(<MyConnectedComponent ownProp={ownProp} store={store} />)
       expect(connectSpy.calledOnce).to.be.true
       expect(connectSpy.firstCall.args[2].ownProp).to.equal(ownProp)
-      expect(renderedMyComponent.getElement().props.ownProp).to.equal(ownProp)
+      expect(MyComponent.calledOnce).to.be.true
+      expect(MyComponent.firstCall.args[0].ownProp).to.equal(ownProp)
     })
   })
 })
