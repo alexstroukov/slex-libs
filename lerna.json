@@ -3,11 +3,10 @@
     "packages/react-slex-router",
     "packages/react-slex-store",
     "packages/react-slex-ui",
-    "packages/slex-bootstrap",
-    "packages/slex-memoize",
     "packages/slex-router",
     "packages/slex-store",
-    "packages/slex-worker"
+    "packages/slex-store-bootstrap",
+    "packages/slex-store-worker"
   ],
   "version": "1.10.6"
 }

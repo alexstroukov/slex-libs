@@ -5,9 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "test",
-    "prepublish": "rm -rf .gitignore && cp .gitignore.pre .gitignore",
-    "postpublish": "rm -rf .gitignore && cp .gitignore.post .gitignore",
-    "publish": "lerna publish"
+    "publish": "lerna publish --force-publish=*",
+    "lerna": "lerna"
   },
   "repository": {
     "type": "git",
