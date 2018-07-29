@@ -3,7 +3,7 @@
   "version": "1.10.6",
   "repository": "https://github.com/alexstroukov/slex-utils/tree/master/packages/slex-cache",
   "license": "MIT",
-  "main": "compiled/cache.js",
+  "main": "compiled/slexCache.js",
   "standard": {
     "parser": "babel-eslint",
     "plugins": [
