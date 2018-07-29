@@ -4,8 +4,10 @@
   "description": "A lerna release environment for slex libraries",
   "main": "index.js",
   "scripts": {
-    "test": "test",
+    "test": "lerna exec --ignore slex-link -- npm run test",
+    "build": "lerna exec --ignore slex-link -- npm run build",
     "publish": "lerna publish --force-publish=*",
+    "bootstrap": "lerna bootstrap --ignore-scripts",
     "lerna": "lerna"
   },
   "repository": {
