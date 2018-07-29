@@ -11,7 +11,7 @@ const config = {
   externals: [nodeExternals()],
   output: {
     path: path.resolve(__dirname, '../compiled'),
-    filename: 'test.js',
+    filename: '[name].js',
     libraryTarget: 'umd',
     pathinfo: true,
     sourceMapFilename: '[file].map',
