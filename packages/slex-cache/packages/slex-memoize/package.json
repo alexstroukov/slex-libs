@@ -1,6 +1,6 @@
 {
   "name": "slex-memoize",
-  "version": "1.10.8",
+  "version": "1.10.9",
   "repository": "https://github.com/alexstroukov/slex-memoize",
   "license": "MIT",
   "main": "compiled/slexMemoize.js",
@@ -29,7 +29,7 @@
   "scripts": {
     "mocha": "mocha",
     "watch": "webpack --config webpack/webpack.config.js --watch",
-    "build": "webpack --config webpack/webpack.config.js",
+    "build": "webpack --config webpack/webpack.config.js --display none --hide-modules",
     "test": "mocha compiled/test",
     "clean": "rm -rf compiled",
     "deep-clean": "rm -rf node_modules && npm run clean",
