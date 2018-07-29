@@ -1,48 +1,17 @@
-[![CircleCI](https://circleci.com/gh/alexstroukov/slex-memoize.svg?style=svg)](https://circleci.com/gh/alexstroukov/slex-memoize)
-
-# Slex Memoize
+# Slex Cache
 
 ```
-$ npm install slex-memoize
+$ npm install slex-cache
 ```
 
-`slex-memoize` is a memoize function which supports multi argument functions.
+`slex-cache` is a wrapper over indexedDb which exposes a simple cache interface.
 
 ## Usage
 
 ```javascript
-import memoize from 'slex-memoize'
-// import memoize, { memoizeArgs as memoize } from 'slex-memoize'
+import cache from 'slex-cache'
 
-const arg1 = {}
-const arg2 = []
-const arg3 = () => {}
-
-const memoized = memoize((arg1, arg2, arg3) => {
-  // do something
-})
-
-const result1 = memoized(arg1, arg2, arg3)
-const result2 = memoized(arg1, arg2, arg3)
-
-console.info(result1 === result2) // true
-```
-## Usage for options pattern
-
-
-```javascript
-import { memoizeOptions as memoize } from 'slex-memoize'
-
-const arg1 = {}
-const arg2 = []
-const arg3 = () => {}
-
-const memoized = memoize(({ arg1, arg2, arg3 }) => {
-  // do something
-})
-
-const result1 = memoized({ arg1, arg2, arg3 })
-const result2 = memoized({ arg1, arg2, arg3 })
-
-console.info(result1 === result2) // true
+cache.setItem('key', value).then(...)
+cache.getItem('key').then(...)
+cache.removeItem('key').then(...)
 ```
