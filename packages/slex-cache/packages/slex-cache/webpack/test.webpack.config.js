@@ -35,7 +35,7 @@ const config = {
         ],
         loader: 'babel-loader',
         options: {
-          presets: ['react', 'es2015'],
+          presets: ['es2015'],
           plugins: [
             'transform-object-rest-spread',
             'transform-es2015-destructuring',

@@ -11,7 +11,6 @@ const config = {
   devServer: {},
   plugins: [],
   profile: true,
-
   output: {
     path: path.resolve(__dirname, '../compiled'),
     filename: '[name].js',
@@ -26,13 +25,13 @@ const config = {
   module: {
     rules: [
       {
-        test: /(\.jsx|\.js)$/,
+        test: /\.js$/,
         include: [
           path.resolve(__dirname, '../src')
         ],
         loader: 'babel-loader',
         options: {
-          presets: ['es2015', 'react'],
+          presets: ['es2015'],
           plugins: [
             'transform-object-rest-spread',
             'transform-es2015-destructuring',
@@ -54,7 +53,7 @@ const config = {
     modules: [
       'node_modules'
     ],
-    extensions: ['.js', '.json', '.jsx', '.css'],
+    extensions: ['.js', '.json', '.css'],
     plugins: []
   }
 }
