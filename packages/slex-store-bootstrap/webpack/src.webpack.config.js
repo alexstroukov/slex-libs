@@ -1,7 +1,9 @@
 const path = require('path')
 
 const config = {
-  entry: '../src/index',
+  entry: {
+    slexStoreBootstrap: '../src/index'
+  },
   devtool: 'source-map',
   context: __dirname,
   target: 'web',
@@ -9,10 +11,9 @@ const config = {
   devServer: {},
   plugins: [],
   profile: true,
-
   output: {
     path: path.resolve(__dirname, '../compiled'),
-    filename: 'slexStoreBootstrap.js',
+    filename: '[name].js',
     libraryTarget: 'umd',
     pathinfo: true,
     sourceMapFilename: '[file].map',
@@ -24,7 +25,7 @@ const config = {
   module: {
     rules: [
       {
-        test: /(\.jsx|\.js)$/,
+        test: /\.js$/,
         include: [
           path.resolve(__dirname, '../src')
         ],
@@ -52,7 +53,7 @@ const config = {
     modules: [
       'node_modules'
     ],
-    extensions: ['.js', '.json', '.jsx', '.css'],
+    extensions: ['.js', '.json', '.css'],
     plugins: []
   }
 }

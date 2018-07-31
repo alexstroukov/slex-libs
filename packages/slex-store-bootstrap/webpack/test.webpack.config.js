@@ -2,14 +2,16 @@ const path = require('path')
 const nodeExternals = require('webpack-node-externals')
 
 const config = {
-  entry: '../test/index',
+  entry: {
+    test: '../test/index'
+  },
   devtool: 'source-map',
   context: __dirname,
   target: 'node',
   externals: [nodeExternals()],
   output: {
     path: path.resolve(__dirname, '../compiled'),
-    filename: 'test.js',
+    filename: '[name].js',
     libraryTarget: 'umd',
     pathinfo: true,
     sourceMapFilename: '[file].map',
