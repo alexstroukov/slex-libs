@@ -1,6 +1,7 @@
 {
   "name": "slex-utils",
   "version": "1.0.0",
+  "private": true,
   "description": "A lerna release environment for slex libraries",
   "main": "index.js",
   "scripts": {
