@@ -1,6 +1,6 @@
 {
   "name": "slex-link",
-  "version": "1.10.10",
+  "version": "1.10.11",
   "description": "Link local projects with npm link.",
   "main": "index.js",
   "repository": "https://github.com/alexstroukov/slex-utils/tree/master/packages/slex-link",
