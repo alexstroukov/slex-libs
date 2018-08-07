@@ -1,6 +1,6 @@
 {
   "name": "react-slex-ui",
-  "version": "1.10.7",
+  "version": "1.10.8",
   "repository": "https://github.com/alexstroukov/react-slex-ui",
   "description": "react-slex-ui is a component library for react ",
   "main": "components/index.js",
