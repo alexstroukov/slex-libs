@@ -6,7 +6,10 @@
     "packages/slex-router",
     "packages/slex-store",
     "packages/slex-store-bootstrap",
-    "packages/slex-store-worker"
+    "packages/slex-store-worker",
+    "packages/slex-memoize",
+    "packages/slex-cache",
+    "packages/slex-link"
   ],
   "version": "1.10.8"
 }
