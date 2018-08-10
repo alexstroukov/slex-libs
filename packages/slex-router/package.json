@@ -1,6 +1,6 @@
 {
   "name": "slex-router",
-  "version": "1.20.2",
+  "version": "1.20.3",
   "repository": "https://github.com/alexstroukov/slex-router",
   "license": "MIT",
   "main": "compiled/slexRouter",

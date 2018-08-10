@@ -1,6 +1,6 @@
 {
   "name": "slex-store-worker",
-  "version": "1.20.2",
+  "version": "1.20.3",
   "repository": "https://github.com/alexstroukov/slex-store-worker",
   "license": "MIT",
   "main": "compiled/slexStoreWorker.js",
@@ -53,7 +53,7 @@
     "eslint-plugin-class-property": "1.0.6",
     "mocha": "3.5.0",
     "sinon": "3.2.1",
-    "slex-store": "^1.20.2",
+    "slex-store": "^1.20.3",
     "webpack": "3.5.5",
     "webpack-node-externals": "1.6.0"
   }

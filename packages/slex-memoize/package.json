@@ -1,6 +1,6 @@
 {
   "name": "slex-memoize",
-  "version": "1.20.2",
+  "version": "1.20.3",
   "repository": "https://github.com/alexstroukov/slex-utils/tree/master/packages/slex-memoize",
   "license": "MIT",
   "main": "compiled/slexMemoize.js",
