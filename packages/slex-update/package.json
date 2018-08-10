@@ -1,0 +1,20 @@
+{
+  "name": "slex-link",
+  "version": "1.20.1",
+  "description": "Link local projects with npm link.",
+  "main": "index.js",
+  "repository": "https://github.com/alexstroukov/slex-utils/tree/master/packages/slex-link",
+  "bin": {
+    "slex-link": "./index.js"
+  },
+  "scripts": {
+    "link": "node index"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "lodash": "4.17.2",
+    "meow": "4.0.0",
+    "ora": "2.0.0"
+  }
+}
