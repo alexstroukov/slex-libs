@@ -10,6 +10,7 @@
     "watch": "lerna run --parallel watch",
     "publish": "lerna publish --force-publish=*",
     "bootstrap": "lerna bootstrap --ignore-scripts",
+    "install": "lerna exec -- npm install",
     "lerna": "lerna"
   },
   "repository": {
