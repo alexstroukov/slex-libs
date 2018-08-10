@@ -5,6 +5,7 @@
     "packages/react-slex-ui",
     "packages/slex-cache",
     "packages/slex-link",
+    "packages/slex-update",
     "packages/slex-memoize",
     "packages/slex-router",
     "packages/slex-store",
