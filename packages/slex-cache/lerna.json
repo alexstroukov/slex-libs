@@ -1,8 +1,0 @@
-{
-  "packages": [
-    "packages/slex-cache",
-    "packages/slex-link",
-    "packages/slex-memoize"
-  ],
-  "version": "1.10.11"
-}

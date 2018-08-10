@@ -1,7 +1,48 @@
-# Slex Utils
+[![CircleCI](https://circleci.com/gh/alexstroukov/slex-memoize.svg?style=svg)](https://circleci.com/gh/alexstroukov/slex-memoize)
 
-`slex-utils` is a collection of javascript utility modules.
+# Slex Memoize
 
-- [`slex-memoize`](https://github.com/alexstroukov/slex-utils/tree/master/packages/slex-memoize) is a memoize utility which supports multi argument functions.
+```
+$ npm install slex-memoize
+```
 
-- [`slex-link`](https://github.com/alexstroukov/slex-utils/tree/master/packages/slex-link) is a link utility simplifies npm linking libraries when developing.
+`slex-memoize` is a memoize function which supports multi argument functions.
+
+## Usage
+
+```javascript
+import memoize from 'slex-memoize'
+// import memoize, { memoizeArgs as memoize } from 'slex-memoize'
+
+const arg1 = {}
+const arg2 = []
+const arg3 = () => {}
+
+const memoized = memoize((arg1, arg2, arg3) => {
+  // do something
+})
+
+const result1 = memoized(arg1, arg2, arg3)
+const result2 = memoized(arg1, arg2, arg3)
+
+console.info(result1 === result2) // true
+```
+## Usage for options pattern
+
+
+```javascript
+import { memoizeOptions as memoize } from 'slex-memoize'
+
+const arg1 = {}
+const arg2 = []
+const arg3 = () => {}
+
+const memoized = memoize(({ arg1, arg2, arg3 }) => {
+  // do something
+})
+
+const result1 = memoized({ arg1, arg2, arg3 })
+const result2 = memoized({ arg1, arg2, arg3 })
+
+console.info(result1 === result2) // true
+```

@@ -1,7 +1,17 @@
-# Slex Utils
+# Slex Cache
 
-`slex-utils` is a collection of javascript utility modules.
+```
+$ npm install slex-cache
+```
 
-- [`slex-memoize`](https://github.com/alexstroukov/slex-utils/tree/master/packages/slex-memoize) is a memoize utility which supports multi argument functions.
+`slex-cache` is a wrapper over indexedDb which exposes a simple cache interface.
 
-- [`slex-link`](https://github.com/alexstroukov/slex-utils/tree/master/packages/slex-link) is a link utility simplifies npm linking libraries when developing.
+## Usage
+
+```javascript
+import cache from 'slex-cache'
+
+cache.setItem('key', value).then(...)
+cache.getItem('key').then(...)
+cache.removeItem('key').then(...)
+```
