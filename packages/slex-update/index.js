@@ -1,18 +1,18 @@
 #!/usr/bin/env node
 const meow = require('meow')
 const _ = require('lodash')
-const link = require('./link')
+const update = require('./update')
 
 const cli = meow(`
 	Usage
-	  $ slex-link
+	  $ slex-update
 	Requirements
 		slex-rc.json
 		{
-			"slex-link": {
+			"slex-update": {
 				"package-name": "../path/to/package"
 			}
 		}
 `)
 
-link()
+update()

@@ -28,7 +28,7 @@ function fetchConfig ({ rootPath }) {
   return readFile(`${rootPath}/slex-rc.json`)
     .then(packageJsonString => {
       try {
-        return JSON.parse(packageJsonString)
+        return JSON.parse(packageJsonString)['slex-link']
       } catch (error) {
         return {}
       }

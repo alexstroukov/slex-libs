@@ -1,22 +1,22 @@
-# Slex Link
+# Slex Update
 
 ```
-$ npm install slex-link 
+$ npm install slex-update 
 ```
 
-`slex-link` is a simple cli for npm linking locally available dependencies.
+`slex-update` is a simple cli for updating locally available dependencies.
 
 ## Usage
 
 ```
-  $ slex-link --help
+  $ slex-update --help
 
 	Usage
-	  $ slex-link
+	  $ slex-update
 	Requirements
 		slex-rc.json
 		{
-			"slex-link": {
+			"slex-update": {
 				"package-name": "../path/to/package"
 			}
 		}

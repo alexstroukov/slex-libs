@@ -5,22 +5,12 @@ const baseExec = require('child_process').exec
 const ora = require('ora')
 const spinner = ora()
 
-function link () {
+function update () {
   const rootPath = process.cwd()
   return fetchConfig({ rootPath })
     .then(packages => {
-      const linkAllDependencies = () => _.chain(packages)
-        .toPairs()
-        .map(([ name, path ]) => () => addLink({ path, name }))
-        .reduce((memo, next) => memo.then(next), Promise.resolve())
-        .value()
-      const linkAllPackages = () => _.chain(packages)
-        .toPairs()
-        .map(([ name, path ]) => () => linkToPackage({ rootPath, name }))
-        .reduce((memo, next) => memo.then(next), Promise.resolve())
-        .value()
-      return linkAllDependencies()
-        .then(linkAllPackages)
+      const packageNames = packages.join(' ')
+      return updatePackages({ packageNames })
     })
 }
 
@@ -28,7 +18,7 @@ function fetchConfig ({ rootPath }) {
   return readFile(`${rootPath}/slex-rc.json`)
     .then(packageJsonString => {
       try {
-        return JSON.parse(packageJsonString)
+        return JSON.parse(packageJsonString)['slex-update']
       } catch (error) {
         return {}
       }
@@ -37,24 +27,16 @@ function fetchConfig ({ rootPath }) {
       throw new Error('Failed to load slex-rc.json')
     })
 }
-function addLink ({ path, name }) {
-  const command = 'npm link'
-  const commandText = `[slex-link]: linking ${name}`
+function updatePackages ({ packageNames }) {
+  const command = `npm i ${packageNames}`
+  const commandText = `[slex-update]: updating ${packageNames}`
   spinner.start(commandText)
   return exec(command, { cwd: path })
     .then(() => {
       spinner.succeed(commandText)
     })
 }
-function linkToPackage ({ rootPath, name }) {
-  const command = `npm link ${name}`
-  const commandText = `[slex-link]: linking to ${name}`
-  spinner.text = commandText
-  return exec(command, { cwd: rootPath })
-    .then(() => {
-      spinner.succeed(commandText)
-    })
-}
+
 function exec (command, options) {
   return new Promise((resolve, reject) => {
     baseExec(command, options, (err, stdout, stderr) => {
@@ -82,4 +64,4 @@ function readFile (location) {
   })
 }
 
-module.exports = link
+module.exports = update

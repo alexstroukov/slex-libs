@@ -1,14 +1,14 @@
 {
-  "name": "slex-link",
+  "name": "slex-update",
   "version": "1.20.1",
-  "description": "Link local projects with npm link.",
+  "description": "Update local projects in npm.",
   "main": "index.js",
-  "repository": "https://github.com/alexstroukov/slex-utils/tree/master/packages/slex-link",
+  "repository": "https://github.com/alexstroukov/slex-utils/tree/master/packages/slex-update",
   "bin": {
-    "slex-link": "./index.js"
+    "slex-update": "./index.js"
   },
   "scripts": {
-    "link": "node index"
+    "update": "node index"
   },
   "author": "",
   "license": "ISC",
