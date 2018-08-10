@@ -7,9 +7,11 @@ const cli = meow(`
 	Usage
 	  $ slex-link
 	Requirements
-		slex-link-config.json
+		slex-rc.json
 		{
-			"package-name": "../path/to/package"
+			"slex-link": {
+				"package-name": "../path/to/package"
+			}
 		}
 `)
 

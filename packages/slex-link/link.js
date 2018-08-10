@@ -25,7 +25,7 @@ function link () {
 }
 
 function fetchConfig ({ rootPath }) {
-  return readFile(`${rootPath}/slex-link-config.json`)
+  return readFile(`${rootPath}/slex-rc.json`)
     .then(packageJsonString => {
       try {
         return JSON.parse(packageJsonString)
@@ -34,7 +34,7 @@ function fetchConfig ({ rootPath }) {
       }
     })
     .catch(error => {
-      throw new Error('Failed to load slex-link-config.json')
+      throw new Error('Failed to load slex-rc.json')
     })
 }
 function addLink ({ path, name }) {
