@@ -1,6 +1,6 @@
 {
   "name": "react-slex-router",
-  "version": "1.20.1",
+  "version": "1.20.2",
   "repository": "https://github.com/alexstroukov/react-slex-router",
   "license": "MIT",
   "main": "compiled/reactSlexRouter.js",
@@ -37,8 +37,8 @@
   },
   "dependencies": {
     "lodash": "4.17.2",
-    "slex-memoize": "^1.20.1",
-    "slex-router": "^1.20.1"
+    "slex-memoize": "^1.20.2",
+    "slex-router": "^1.20.2"
   },
   "peerDependencies": {
     "react": "^16.0.0",
@@ -69,7 +69,7 @@
     "react-dom": "16.0.0",
     "react-test-renderer": "16.0.0",
     "sinon": "3.2.1",
-    "slex-store": "^1.20.1",
+    "slex-store": "^1.20.2",
     "webpack": "3.5.5",
     "webpack-node-externals": "1.6.0"
   },

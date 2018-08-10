@@ -5,12 +5,12 @@
     "packages/react-slex-ui",
     "packages/slex-cache",
     "packages/slex-link",
-    "packages/slex-update",
     "packages/slex-memoize",
     "packages/slex-router",
     "packages/slex-store",
     "packages/slex-store-bootstrap",
-    "packages/slex-store-worker"
+    "packages/slex-store-worker",
+    "packages/slex-update"
   ],
-  "version": "1.20.1"
+  "version": "1.20.2"
 }
