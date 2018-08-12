@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/gh/alexstroukov/slex-store-worker.svg?style=svg)](https://circleci.com/gh/alexstroukov/slex-store-worker)
+[![CircleCI](https://circleci.com/gh/alexstroukov/slex-libs.svg?style=svg)](https://circleci.com/gh/alexstroukov/slex-libs)
 
 # Slex Store Worker
 

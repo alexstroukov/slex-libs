@@ -1,4 +1,5 @@
-[![CircleCI](https://circleci.com/gh/alexstroukov/slex-store-bootstrap.svg?style=svg)](https://circleci.com/gh/alexstroukov/slex-store-bootstrap)
+[![CircleCI](https://circleci.com/gh/alexstroukov/slex-libs.svg?style=svg)](https://circleci.com/gh/alexstroukov/slex-libs)
+
 # Slex Store Bootstrap
 
 ```

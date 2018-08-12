@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/gh/alexstroukov/react-slex-router.svg?style=svg)](https://circleci.com/gh/alexstroukov/react-slex-router)
+[![CircleCI](https://circleci.com/gh/alexstroukov/slex-libs.svg?style=svg)](https://circleci.com/gh/alexstroukov/slex-libs)
 
 # React Slex Router
 

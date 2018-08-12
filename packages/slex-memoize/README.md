@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/gh/alexstroukov/slex-memoize.svg?style=svg)](https://circleci.com/gh/alexstroukov/slex-memoize)
+[![CircleCI](https://circleci.com/gh/alexstroukov/slex-libs.svg?style=svg)](https://circleci.com/gh/alexstroukov/slex-libs)
 
 # Slex Memoize
 

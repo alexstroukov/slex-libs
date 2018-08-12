@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/alexstroukov/slex-libs.svg?style=svg)](https://circleci.com/gh/alexstroukov/slex-libs)
+
 # Slex Libs
 
 `slex-libs` is a collection of javascript modules to aid in creating javascript/React SPAs.

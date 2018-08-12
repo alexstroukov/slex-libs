@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/gh/alexstroukov/react-slex-store.svg?style=svg)](https://circleci.com/gh/alexstroukov/react-slex-store)
+[![CircleCI](https://circleci.com/gh/alexstroukov/slex-libs.svg?style=svg)](https://circleci.com/gh/alexstroukov/slex-libs)
 
 # React Slex Store
 
