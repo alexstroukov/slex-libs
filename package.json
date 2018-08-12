@@ -12,6 +12,7 @@
     "bootstrap": "lerna bootstrap --ignore-scripts",
     "link": "lerna link",
     "install": "lerna exec -- npm install",
+    "ci": "lerna exec -- npm ci",
     "lerna": "lerna"
   },
   "repository": {
