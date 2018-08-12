@@ -15,3 +15,11 @@
 - [`react-slex-router`](https://github.com/alexstroukov/slex-libs/tree/master/packages/react-slex-router) is a component driven router implementation for react. It is connected to slex-store via react-slex-store and its state is kept in its own store similar to redux-router combined with react-router.
 
 - [`react-slex-ui`](https://github.com/alexstroukov/slex-libs/tree/master/packages/react-slex-ui) is a react component library based on material-ui.
+
+- [`slex-cache`](https://github.com/alexstroukov/slex-libs/tree/master/packages/slex-cache) is a wrapper over indexedDb which exposes a simple cache interface
+
+- [`slex-link`](https://github.com/alexstroukov/slex-libs/tree/master/packages/slex-link) is a simple cli for npm linking locally available dependencies.
+
+- [`slex-update`](https://github.com/alexstroukov/slex-libs/tree/master/packages/slex-update) is a simple cli for updating locally available dependencies.
+
+- [`slex-memoize`](https://github.com/alexstroukov/slex-libs/tree/master/packages/slex-memoize) is a memoize function which supports multi argument functions.
