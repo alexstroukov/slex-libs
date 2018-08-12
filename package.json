@@ -11,7 +11,8 @@
     "publish": "lerna publish --force-publish=*",
     "bootstrap": "lerna bootstrap --ignore-scripts",
     "link": "lerna link",
-    "install": "lerna exec -- npm install",
+    "clean": "lerna run clean",
+    "deep-clean": "lerna run deep-clean",
     "lerna": "lerna"
   },
   "repository": {
