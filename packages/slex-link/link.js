@@ -6,7 +6,7 @@ const ora = require('ora')
 const spinner = ora()
 
 function link () {
-  const rootPath = process.cwd()
+  const rootPath = __dirname
   return fetchConfig({ rootPath })
     .then(packages => {
       const linkAllDependencies = () => _.chain(packages)

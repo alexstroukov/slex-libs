@@ -6,7 +6,7 @@ const ora = require('ora')
 const spinner = ora()
 
 function update () {
-  const rootPath = process.cwd()
+  const rootPath = __dirname
   return fetchConfig({ rootPath })
     .then(packages => {
       const packageNames = packages.join(' ')
