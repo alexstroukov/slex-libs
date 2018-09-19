@@ -3,14 +3,12 @@ const path = require('path')
 const _ = require('lodash')
 const baseExec = require('child_process').exec
 const ora = require('ora')
-const spinner = ora()
 
 function update () {
-  const rootPath = __dirname
+  const rootPath = process.cwd() 
   return fetchConfig({ rootPath })
     .then(packages => {
-      const packageNames = packages.join(' ')
-      return updatePackages({ packageNames })
+      return updatePackages({ rootPath, packages })
     })
 }
 
@@ -27,14 +25,20 @@ function fetchConfig ({ rootPath }) {
       throw new Error('Failed to load slex-rc.json')
     })
 }
-function updatePackages ({ packageNames }) {
-  const command = `npm i ${packageNames}`
-  const commandText = `[slex-update]: updating ${packageNames}`
-  spinner.start(commandText)
-  return exec(command, { cwd: path })
-    .then(() => {
-      spinner.succeed(commandText)
+function updatePackages ({ rootPath, packages }) {
+  return _.chain(packages)
+    .map(package => () => {
+      const spinner = ora()
+      const command = `npm install ${package}`
+      const commandText = `[slex-update]: updating ${package}`
+      spinner.start(commandText)
+      return exec(command, { cwd: rootPath })
+        .then(() => {
+          spinner.succeed(commandText)
+        })
     })
+    .reduce((memo, next) => memo.then(next), Promise.resolve())
+    .value()
 }
 
 function exec (command, options) {
