@@ -1,6 +1,6 @@
 {
   "name": "slex-store-bootstrap",
-  "version": "1.20.3",
+  "version": "1.20.4",
   "repository": "https://github.com/alexstroukov/slex-store-bootstrap",
   "license": "MIT",
   "main": "compiled/slexStoreBootstrap.js",

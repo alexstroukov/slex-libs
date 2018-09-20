@@ -1,6 +1,6 @@
 {
   "name": "slex-update",
-  "version": "1.20.3",
+  "version": "1.20.4",
   "description": "Update local projects in npm.",
   "main": "index.js",
   "repository": "https://github.com/alexstroukov/slex-utils/tree/master/packages/slex-update",
