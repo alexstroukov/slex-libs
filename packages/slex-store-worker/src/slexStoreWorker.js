@@ -17,11 +17,19 @@ class SlexStoreWorker {
     const differences = deepDiff.diff(prevPartialState, partialState)
     return differences
   }
-  createSyncForWorkerAction = ({ prevState = {}, nextState, action }) => {
-    return {
-      type: 'SYNC_FOR_WORKER_STORE',
-      nextState,
-      action
+  createSyncForWorkerAction = ({ prevState, nextState, action }) => {
+    if (prevState && prevState !== nextState) {
+      const differences = deepDiff.diff(prevState, nextState)
+      return {
+        type: 'SYNC_FOR_WORKER_STORE',
+        differences,
+        action
+      }
+    } else {
+      return {
+        type: 'SYNC_FOR_WORKER_STORE',
+        action
+      }
     }
   }
   defaultReduce = (state, action) => {
@@ -74,10 +82,9 @@ class SlexStoreWorker {
     workerGlobalContext.addEventListener('message', event => {
       const action = event.data
       if (action && action.type && action.type === 'SYNC_FOR_WORKER_STORE') {
-        const { nextState, action: forwardedAction } = action
+        const { differences, action: forwardedAction } = action
         const prevState = getState()
-        const differences = deepDiff.diff(prevState, nextState)
-        const appliedNextState = applyDiff.applyDifferences(differences, prevState)
+        const appliedNextState = differences ? applyDiff.applyDifferences(differences, prevState) : prevState
         const isInitAction = forwardedAction.type === 'INITIALISE'
         return wrappedAppliedDispatch(forwardedAction, { skipHooks: isInitAction, appliedPrevState: appliedNextState })
       }
