@@ -41,7 +41,7 @@
   "license": "MIT",
   "dependencies": {
     "classnames": "2.2.5",
-    "lodash": "4.17.2",
+    "lodash": "4.17.21",
     "material-ui": "1.0.0-beta.27",
     "material-ui-icons": "1.0.0-beta.10",
     "prop-types": "15.5.10",
