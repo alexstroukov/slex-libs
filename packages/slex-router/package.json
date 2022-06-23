@@ -51,7 +51,7 @@
     "babel-runtime": "6.26.0",
     "chai": "4.1.1",
     "eslint-plugin-class-property": "1.0.6",
-    "jsdom": "9.8.3",
+    "jsdom": "16.5.0",
     "mocha": "3.5.0",
     "sinon": "3.2.1",
     "webpack": "3.5.5",
