@@ -56,7 +56,7 @@
     "enzyme": "3.0.0",
     "enzyme-adapter-react-16": "1.0.0",
     "eslint-plugin-class-property": "1.0.6",
-    "jsdom": "9.8.3",
+    "jsdom": "16.5.0",
     "mocha": "3.5.0",
     "react": "16.0.0",
     "react-addons-test-utils": "15.6.0",
